@@ -2,6 +2,7 @@
 
 ## TODO
 
+- [ ] Humanize total downloads response
 - [ ] Write Readme
 - [ ] Add tests
 - [ ] Add Credo
