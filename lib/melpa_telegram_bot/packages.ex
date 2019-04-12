@@ -1,6 +1,6 @@
 defmodule MelpaTelegramBot.Packages do
   alias MelpaTelegramBot.Repo
-  alias MelpaTelegramBot.Packages.Package
+  alias MelpaTelegramBot.Packages.{Package, Loader}
 
   require Logger
 
@@ -20,6 +20,8 @@ defmodule MelpaTelegramBot.Packages do
     |> parse_download_counts()
     |> insert_all_download_counts()
   end
+
+  defdelegate search_package(pattern), to: Loader
 
   defp fetch_data(url) do
     case HTTPoison.get(url) do

@@ -35,16 +35,15 @@ defmodule MelpaTelegramBot.Poller do
   defp handle_updates(_other, current_offset), do: current_offset
 
   defp send_messages(updates) do
-    updates
-    |> Enum.each(fn update ->
-      IO.inspect(update)
-
+    Enum.each(updates, fn update ->
       case update do
         %{message: %{text: <<"/describe ", package_name::binary>>}} ->
           send_message(update.message.chat.id, package_name)
 
+        %{inline_query: %{id: inline_query_id, query: pattern}} ->
+          answer_inline_query(inline_query_id, pattern)
+
         other ->
-          IO.inspect(other)
           other
       end
     end)
@@ -67,6 +66,15 @@ defmodule MelpaTelegramBot.Poller do
       MelpaTelegramBot.Messager,
       :send,
       [chat_id, package_name]
+    )
+  end
+
+  defp answer_inline_query(inline_query_id, pattern) do
+    Task.Supervisor.start_child(
+      MelpaTelegramBot.MessageSupervisor,
+      MelpaTelegramBot.Messager,
+      :answer_inline_query,
+      [inline_query_id, pattern]
     )
   end
 end
