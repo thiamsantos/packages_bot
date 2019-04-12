@@ -7,7 +7,8 @@ defmodule MelpaTelegramBot.MixProject do
       version: "0.1.0",
       elixir: "~> 1.8",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      aliases: aliases()
     ]
   end
 
@@ -24,7 +25,16 @@ defmodule MelpaTelegramBot.MixProject do
     [
       {:nadia, "~> 0.4.4"},
       {:httpoison, "~> 1.5", override: true},
-      {:floki, "~> 0.20.4"}
+      {:ecto_sql, "~> 3.1"},
+      {:postgrex, "~> 0.14.2"},
+      {:jason, "~> 1.1"}
+    ]
+  end
+
+  defp aliases do
+    [
+      "ecto.reset": ["ecto.drop", "ecto.setup"],
+      "ecto.setup": ["ecto.create", "ecto.migrate"]
     ]
   end
 end

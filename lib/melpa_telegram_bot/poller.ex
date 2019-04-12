@@ -3,16 +3,14 @@ defmodule MelpaTelegramBot.Poller do
 
   require Logger
 
-  def start_link(opts) do
-    name = Keyword.fetch!(opts, :name)
-
-    GenServer.start_link(__MODULE__, %{offset: 0}, name: name)
+  def start_link(_opts) do
+    GenServer.start_link(__MODULE__, %{offset: 0})
   end
 
   def init(state) do
     :timer.send_interval(500, :poll)
 
-    Logger.info("#{__MODULE__} running")
+    Logger.info("#{__MODULE__} Running.")
 
     {:ok, state}
   end
@@ -39,11 +37,14 @@ defmodule MelpaTelegramBot.Poller do
   defp send_messages(updates) do
     updates
     |> Enum.each(fn update ->
-      case update.message.text do
-        <<"/describe ", package_name::binary>> ->
+      IO.inspect(update)
+
+      case update do
+        %{message: %{text: <<"/describe ", package_name::binary>>}} ->
           send_message(update.message.chat.id, package_name)
 
         other ->
+          IO.inspect(other)
           other
       end
     end)
