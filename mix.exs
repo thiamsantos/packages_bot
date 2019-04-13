@@ -37,7 +37,8 @@ defmodule MelpaBot.MixProject do
       {:jason, "~> 1.1"},
       {:credo, "~> 1.0", only: [:dev, :test], runtime: false},
       {:distillery, "~> 2.0", runtime: false},
-      {:excoveralls, "~> 0.10", only: :test}
+      {:excoveralls, "~> 0.10", only: :test},
+      {:gen_tcp_accept_and_close, "~> 0.1.0"}
     ]
   end
 
