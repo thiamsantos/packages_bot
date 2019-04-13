@@ -6,6 +6,6 @@ config :logger,
   backends: [Timber.LoggerBackends.HTTP],
   level: :info
 
-  config :timber,
+config :timber,
   api_key: Dotenv.fetch_env!("TIMBER_API_KEY"),
   source_id: Dotenv.fetch_env!("TIMBER_SOURCE_ID")
