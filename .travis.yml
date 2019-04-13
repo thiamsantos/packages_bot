@@ -36,3 +36,7 @@ script:
 
 services:
   - postgresql
+
+deploy:
+  provider: script
+  script: sh deploy.sh
