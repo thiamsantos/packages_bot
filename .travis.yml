@@ -14,15 +14,15 @@ env:
 
 cache:
   directories:
-    - ~/.hex
-    - ~/.mix
+    - "~/.hex"
+    - "~/.mix"
     - deps
 
 elixir:
-  - "1.8"
+  - '1.8'
 
 otp_release:
-  - "21.0"
+  - '21.0'
 
 before_script:
   - mix ecto.setup
@@ -41,4 +41,5 @@ deploy:
   script: sh deploy.sh
 
 notifications:
-  slack: binarybuilders:CV8qMVGpZBVKBL2sMC4nFzed
+  slack:
+    secure: NIzRode0iY78OlMwVvGkz+E/vJtzucZZf1+hy9BTvTn4ANO40yEuBPCeOrHPO0rJDV+02Wih6kcjQh/pKs+8elG7JGLDWHui3wideS5AOU5S5pyYgyFbVcX5xlOQhypdAX1j6NksBQYO3g1KsvBFQkkXDhR9Z7fGKwjIkA5Ynul3FT/syDr/hgm4HpncxZ0tVgCzOYi5jHYMoDtie/vf3jsP2XOA0l1Bb+HXDut8qeh+TNvbhNLsZjTAMcXqcYSBF0t41Ha9ibn6hX4AtdFKP4KoPJr3GfjApDk81HHU7jnAci/BmF4cbNJk6BYpdEXmBBJ3sT1cBYiz2yH1KMUVSQbSXtv5hhOZmH85jDwXTL3zZaFkAB62Fii2tH4mTK0p0l+JbaNw76b68eMmkiw8OOoX5SSqG6fZ62JQVbJKyHUUag1t+ihj9fRxTSBGTbLW4vwzKNUunMGOAh2w4xUYK20ZkXpkYc76t3e8fqi5NZwM7a+9QwNhifftEzar1Rk5o7QcjluUAxZTJJgttPc2AwoD27SJDY67vu59EdUMHoFtWLO4ZAfoUkiWI0JnZZ+ansvoeTWx5sbyJbPuZGAMMnTRDTrEYRPU/fCqfFBL0GVSxzZbEj9a7DjsSEuZgjEVqy0su8S/9ltg8DzZr5z757zevmZCb8oAReWACL8ctzY=
