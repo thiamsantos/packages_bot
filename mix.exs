@@ -8,7 +8,14 @@ defmodule MelpaBot.MixProject do
       elixir: "~> 1.8",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      aliases: aliases()
+      aliases: aliases(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
@@ -29,7 +36,8 @@ defmodule MelpaBot.MixProject do
       {:postgrex, "~> 0.14.2"},
       {:jason, "~> 1.1"},
       {:credo, "~> 1.0", only: [:dev, :test], runtime: false},
-      {:distillery, "~> 2.0", runtime: false}
+      {:distillery, "~> 2.0", runtime: false},
+      {:excoveralls, "~> 0.10", only: :test}
     ]
   end
 
