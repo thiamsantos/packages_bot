@@ -10,7 +10,8 @@ config :nadia,
   token: Dotenv.fetch_env!("TELEGRAM_BOT_TOKEN")
 
 config :melpa_bot,
-  ecto_repos: [MelpaBot.Repo]
+  ecto_repos: [MelpaBot.Repo],
+  env: Mix.env()
 
 config :melpa_bot, MelpaBot.Repo, url: Dotenv.fetch_env!("DATABASE_URL")
 
