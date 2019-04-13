@@ -1,8 +1,8 @@
-defmodule MelpaTelegramBotTest do
+defmodule MelpaBotTest do
   use ExUnit.Case
-  doctest MelpaTelegramBot
+  doctest MelpaBot
 
   test "greets the world" do
-    assert MelpaTelegramBot.hello() == :world
+    assert MelpaBot.hello() == :world
   end
 end

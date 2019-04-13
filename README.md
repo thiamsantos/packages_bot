@@ -1,4 +1,4 @@
-# MelpaTelegramBot
+# MelpaBot
 
 ## TODO
 

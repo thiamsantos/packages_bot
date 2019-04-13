@@ -1,4 +1,4 @@
-defmodule MelpaTelegramBot.Poller do
+defmodule MelpaBot.Poller do
   use GenServer
 
   require Logger
@@ -62,8 +62,8 @@ defmodule MelpaTelegramBot.Poller do
 
   defp send_message(chat_id, package_name) do
     Task.Supervisor.start_child(
-      MelpaTelegramBot.MessageSupervisor,
-      MelpaTelegramBot.Messager,
+      MelpaBot.MessageSupervisor,
+      MelpaBot.Messager,
       :send,
       [chat_id, package_name]
     )
@@ -71,8 +71,8 @@ defmodule MelpaTelegramBot.Poller do
 
   defp answer_inline_query(inline_query_id, pattern) do
     Task.Supervisor.start_child(
-      MelpaTelegramBot.MessageSupervisor,
-      MelpaTelegramBot.Messager,
+      MelpaBot.MessageSupervisor,
+      MelpaBot.Messager,
       :answer_inline_query,
       [inline_query_id, pattern]
     )

@@ -1,17 +1,17 @@
-defmodule MelpaTelegramBot.Application do
+defmodule MelpaBot.Application do
   @moduledoc false
 
   use Application
 
   def start(_type, _args) do
     children = [
-      {Task.Supervisor, name: MelpaTelegramBot.MessageSupervisor},
-      {MelpaTelegramBot.Repo, []},
-      {MelpaTelegramBot.Archive, []},
-      {MelpaTelegramBot.Poller, []}
+      {Task.Supervisor, name: MelpaBot.MessageSupervisor},
+      {MelpaBot.Repo, []},
+      {MelpaBot.Archive, []},
+      {MelpaBot.Poller, []}
     ]
 
-    opts = [strategy: :one_for_one, name: MelpaTelegramBot.Supervisor]
+    opts = [strategy: :one_for_one, name: MelpaBot.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end

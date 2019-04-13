@@ -1,7 +1,7 @@
-defmodule MelpaTelegramBot.Archive do
+defmodule MelpaBot.Archive do
   use GenServer
 
-  alias MelpaTelegramBot.Packages
+  alias MelpaBot.Packages
 
   require Logger
 
@@ -44,7 +44,7 @@ defmodule MelpaTelegramBot.Archive do
   end
 
   defp renew_interval do
-    :melpa_telegram_bot
+    :melpa_bot
     |> Application.fetch_env!(__MODULE__)
     |> Keyword.fetch!(:renew_interval_in_seconds)
     |> :timer.seconds()

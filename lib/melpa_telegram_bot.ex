@@ -1,2 +1,2 @@
-defmodule MelpaTelegramBot do
+defmodule MelpaBot do
 end

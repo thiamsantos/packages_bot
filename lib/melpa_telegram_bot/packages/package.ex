@@ -1,4 +1,4 @@
-defmodule MelpaTelegramBot.Packages.Package do
+defmodule MelpaBot.Packages.Package do
   use Ecto.Schema
   import Ecto.Changeset
 

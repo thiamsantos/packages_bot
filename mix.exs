@@ -1,9 +1,9 @@
-defmodule MelpaTelegramBot.MixProject do
+defmodule MelpaBot.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :melpa_telegram_bot,
+      app: :melpa_bot,
       version: "0.1.0",
       elixir: "~> 1.8",
       start_permanent: Mix.env() == :prod,
@@ -16,7 +16,7 @@ defmodule MelpaTelegramBot.MixProject do
   def application do
     [
       extra_applications: [:logger],
-      mod: {MelpaTelegramBot.Application, []}
+      mod: {MelpaBot.Application, []}
     ]
   end
 
