@@ -7,11 +7,11 @@
 - [ ] Add tests
 - [x] Add Credo
 - [x] Add CI
-- [ ] Add coveralls
-- [ ] Add CD
-- [ ] Configure GitHooks
+- [x] Add coveralls
+- [x] Add CD
+- [x] Configure GitHooks
 - [x] Configure distillery
-- [ ] Deploy on gigalixir
+- [x] Deploy on gigalixir
 
 ## Githooks
 
