@@ -10,7 +10,7 @@ defmodule MelpaBot.Poller do
   def init(state) do
     :timer.send_interval(500, :poll)
 
-    Logger.info("#{__MODULE__} Running.")
+    Logger.info("[#{__MODULE__}] Running.")
 
     {:ok, state}
   end

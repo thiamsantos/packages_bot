@@ -33,7 +33,7 @@ defmodule MelpaBot.Messager do
 
     :ok = Nadia.answer_inline_query(inline_query_id, result)
 
-    Logger.info("#{__MODULE__} Answered #{inspect(pattern)} with success!")
+    Logger.info("[#{__MODULE__}] Answered #{inspect(pattern)} with success!")
   end
 
   defp build_inline_keyboard(package) do

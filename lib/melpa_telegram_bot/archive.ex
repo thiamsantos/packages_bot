@@ -10,7 +10,7 @@ defmodule MelpaBot.Archive do
   end
 
   def init(state) do
-    Logger.info("#{__MODULE__} Running.")
+    Logger.info("[#{__MODULE__}] Running.")
 
     {:ok, state, {:continue, :update_archive}}
   end
@@ -28,13 +28,13 @@ defmodule MelpaBot.Archive do
   end
 
   defp update_archive do
-    Logger.info("#{__MODULE__} Updating archive.")
+    Logger.info("[#{__MODULE__}] Updating archive.")
 
     {packages_renewed, _} = Packages.renew_packages()
-    Logger.info("#{__MODULE__} Updated #{packages_renewed} packages.")
+    Logger.info("[#{__MODULE__}] Updated #{packages_renewed} packages.")
 
     {packages_downloads_renewed, _} = Packages.renew_download_counts()
-    Logger.info("#{__MODULE__} Updated #{packages_downloads_renewed} download counts.")
+    Logger.info("[#{__MODULE__}] Updated #{packages_downloads_renewed} download counts.")
 
     schedule_update()
   end

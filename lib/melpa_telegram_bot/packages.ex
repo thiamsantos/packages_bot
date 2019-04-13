@@ -26,7 +26,7 @@ defmodule MelpaBot.Packages do
   defp fetch_data(url) do
     case HTTPoison.get(url) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        Logger.info("#{__MODULE__} Fetched #{url} with success!")
+        Logger.info("[#{__MODULE__}] Fetched #{url} with success!")
         {:ok, Jason.decode!(body)}
 
       {:ok, %HTTPoison.Response{status_code: status_code}} ->

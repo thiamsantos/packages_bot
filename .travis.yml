@@ -39,3 +39,6 @@ services:
 deploy:
   provider: script
   script: sh deploy.sh
+
+notifications:
+  slack: binarybuilders:CV8qMVGpZBVKBL2sMC4nFzed
