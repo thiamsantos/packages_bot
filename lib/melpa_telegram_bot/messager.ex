@@ -4,6 +4,10 @@ defmodule MelpaBot.Messager do
   require Logger
 
   def answer_inline_query(inline_query_id, pattern) do
+    if pattern == "error" do
+      raise ArgumentError, "testing error monitoring"
+    end
+
     result =
       pattern
       |> Packages.search_package()
