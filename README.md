@@ -5,8 +5,10 @@
 - [ ] Humanize total downloads response
 - [ ] Write Readme
 - [ ] Add tests
-- [ ] Add Credo
-- [ ] Add CI
+- [x] Add Credo
+- [x] Add CI
+- [ ] Add coveralls
+- [ ] Add CD
 - [ ] Configure GitHooks
-- [ ] Configure distillery
+- [x] Configure distillery
 - [ ] Deploy on gigalixir
