@@ -23,4 +23,4 @@ config :melpa_bot, MelpaBot.Archive,
   source_id: fetch_env!.("TIMBER_SOURCE_ID")
 
 config :sentry,
-  dsn: fetch_env!.("SENTRY_ENDPOINT"),
+  dsn: fetch_env!.("SENTRY_ENDPOINT")
