@@ -39,7 +39,7 @@ defmodule MelpaBot.MixProject do
       {:distillery, "~> 2.0", runtime: false},
       {:excoveralls, "~> 0.10", only: :test},
       {:gen_tcp_accept_and_close, "~> 0.1.0"},
-      {:timber, "~> 3.1"}
+      {:timber, "~> 3.1", only: :prod}
     ]
   end
 
