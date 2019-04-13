@@ -1,0 +1,34 @@
+language: elixir
+
+env:
+  - CI=true
+  - PGDATABASE=melpa_bot
+  - PGUSER=postgres
+  - PGPASSWORD=postgres
+  - PGHOST=localhost
+  - DATABASE_URL=postgres://postgres:postgres@localhost/melpa_bot
+  - ARCHIVE_RENEW_INTERVAL_IN_SECONDS=3600
+
+cache:
+  directories:
+    - ~/.hex
+    - ~/.mix
+    - deps
+
+elixir:
+  - "1.8"
+
+otp_release:
+  - "21.0"
+
+before_script:
+  - mix ecto.setup
+
+script:
+  - mix format --check-formatted
+  - mix credo --strict
+  - mix test
+  - mix coveralls.travis --pro
+
+services:
+  - postgresql

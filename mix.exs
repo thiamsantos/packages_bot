@@ -27,7 +27,8 @@ defmodule MelpaBot.MixProject do
       {:httpoison, "~> 1.5", override: true},
       {:ecto_sql, "~> 3.1"},
       {:postgrex, "~> 0.14.2"},
-      {:jason, "~> 1.1"}
+      {:jason, "~> 1.1"},
+      {:credo, "~> 1.0", only: [:dev, :test], runtime: false}
     ]
   end
 
