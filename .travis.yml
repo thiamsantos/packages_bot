@@ -32,7 +32,6 @@ script:
   - mix credo --strict
   - mix test
   - mix coveralls.travis --pro
-  - MIX_ENV=prod mix release
 
 services:
   - postgresql

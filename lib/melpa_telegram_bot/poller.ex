@@ -37,9 +37,6 @@ defmodule MelpaBot.Poller do
   defp send_messages(updates) do
     Enum.each(updates, fn update ->
       case update do
-        %{message: %{text: <<"/describe ", package_name::binary>>}} ->
-          send_message(update.message.chat.id, package_name)
-
         %{inline_query: %{id: inline_query_id, query: pattern}} ->
           answer_inline_query(inline_query_id, pattern)
 
@@ -58,15 +55,6 @@ defmodule MelpaBot.Poller do
       |> Map.get(:update_id)
 
     update_id + 1
-  end
-
-  defp send_message(chat_id, package_name) do
-    Task.Supervisor.start_child(
-      MelpaBot.MessageSupervisor,
-      MelpaBot.Messager,
-      :send,
-      [chat_id, package_name]
-    )
   end
 
   defp answer_inline_query(inline_query_id, pattern) do
