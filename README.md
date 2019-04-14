@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # PackagesBot
+=======
+# Melpa Telegram Bot
+>>>>>>> docs(readme): add description, contributing, usage and license sections
 =======
 # Melpa Telegram Bot
 >>>>>>> docs(readme): add description, contributing, usage and license sections
