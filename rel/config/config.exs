@@ -21,6 +21,3 @@ config :melpa_bot, MelpaBot.Archive,
  config :timber,
   api_key: fetch_env!.("TIMBER_API_KEY"),
   source_id: fetch_env!.("TIMBER_SOURCE_ID")
-
-config :sentry,
-  dsn: fetch_env!.("SENTRY_ENDPOINT")
