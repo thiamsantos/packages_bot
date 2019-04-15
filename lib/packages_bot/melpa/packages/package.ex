@@ -1,4 +1,4 @@
-defmodule PackagesBot.Packages.Package do
+defmodule PackagesBot.Melpa.Packages.Package do
   use Ecto.Schema
   import Ecto.Changeset
 

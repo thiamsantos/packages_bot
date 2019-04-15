@@ -1,5 +1,5 @@
-defmodule PackagesBot.Packages.Loader do
-  alias PackagesBot.Packages.Package
+defmodule PackagesBot.Melpa.Packages.Loader do
+  alias PackagesBot.Melpa.Packages.Package
   alias PackagesBot.Repo
   import Ecto.Query
 

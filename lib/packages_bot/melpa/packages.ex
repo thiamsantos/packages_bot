@@ -1,6 +1,6 @@
-defmodule PackagesBot.Packages do
-  alias PackagesBot.Packages.{Loader, Package}
+defmodule PackagesBot.Melpa.Packages do
   alias PackagesBot.Repo
+  alias PackagesBot.Melpa.Packages.{Loader, Package}
   alias PackagesBot.Melpa.Client
 
   require Logger

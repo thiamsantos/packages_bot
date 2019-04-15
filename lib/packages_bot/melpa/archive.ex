@@ -1,7 +1,7 @@
 defmodule PackagesBot.Melpa.Archive do
   use GenServer
 
-  alias PackagesBot.Packages
+  alias PackagesBot.Melpa.Packages
 
   require Logger
 
