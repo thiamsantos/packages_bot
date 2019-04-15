@@ -17,8 +17,8 @@ defmodule PackagesBot.Poller do
 
   def handle_info(:poll, %{offset: current_offset}) do
     new_offset =
-      [offset: current_offset]
-      |> Nadia.get_updates()
+      bot_token()
+      |> PackagesBot.TelegramClient.get_updates(current_offset)
       |> handle_updates(current_offset)
 
     {:noreply, %{offset: new_offset}}
@@ -37,7 +37,7 @@ defmodule PackagesBot.Poller do
   defp send_messages(updates) do
     Enum.each(updates, fn update ->
       case update do
-        %{inline_query: %{id: inline_query_id, query: pattern}} ->
+        %{"inline_query" => %{"id" => inline_query_id, "query" => pattern}} ->
           answer_inline_query(inline_query_id, pattern)
 
         other ->
@@ -52,7 +52,7 @@ defmodule PackagesBot.Poller do
     update_id =
       updates
       |> List.last()
-      |> Map.get(:update_id)
+      |> Map.get("update_id")
 
     update_id + 1
   end
@@ -62,7 +62,13 @@ defmodule PackagesBot.Poller do
       PackagesBot.MessageSupervisor,
       PackagesBot.Messager,
       :answer_inline_query,
-      [inline_query_id, pattern]
+      [bot_token(), inline_query_id, pattern]
     )
+  end
+
+  defp bot_token do
+    :packages_bot
+    |> Application.fetch_env!(__MODULE__)
+    |> Keyword.fetch!(:bot_token)
   end
 end

@@ -1,45 +1,23 @@
 defmodule PackagesBot.Packages do
   alias PackagesBot.Packages.{Loader, Package}
   alias PackagesBot.Repo
+  alias PackagesBot.MelpaClient
 
   require Logger
 
-  @archive_url "https://melpa.org/archive.json"
-  @download_counts_url "https://melpa.org/download_counts.json"
-
   def renew_packages do
-    @archive_url
-    |> fetch_data()
+    MelpaClient.archive()
     |> parse_packages()
     |> insert_all_packages()
   end
 
   def renew_download_counts do
-    @download_counts_url
-    |> fetch_data()
+    MelpaClient.download_counts()
     |> parse_download_counts()
     |> insert_all_download_counts()
   end
 
   defdelegate search_package(pattern), to: Loader
-
-  defp fetch_data(url) do
-    case HTTPoison.get(url) do
-      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        Logger.info("[#{__MODULE__}] Fetched #{url} with success!")
-        {:ok, Jason.decode!(body)}
-
-      {:ok, %HTTPoison.Response{status_code: status_code}} ->
-        Logger.error("#{__MODULE__} Failed to fetching #{url}. status_code: #{status_code}.")
-
-        {:error, "Failed to fetch #{url}"}
-
-      {:error, %HTTPoison.Error{reason: reason}} ->
-        Logger.error("#{__MODULE__} Failed to fetch #{url}. reason: #{inspect(reason)}.")
-
-        {:error, "Failed to fetch #{url}"}
-    end
-  end
 
   defp parse_packages({:error, reason}), do: {:error, reason}
 

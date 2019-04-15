@@ -30,8 +30,6 @@ defmodule PackagesBot.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:nadia, "~> 0.4.4"},
-      {:httpoison, "~> 1.5", override: true},
       {:ecto_sql, "~> 3.1"},
       {:postgrex, "~> 0.14.2"},
       {:jason, "~> 1.1"},
@@ -39,7 +37,8 @@ defmodule PackagesBot.MixProject do
       {:distillery, "~> 2.0", runtime: false},
       {:excoveralls, "~> 0.10", only: :test},
       {:gen_tcp_accept_and_close, "~> 0.1.0"},
-      {:timber, "~> 3.1", only: :prod}
+      {:timber, "~> 3.1", only: :prod},
+      {:tesla, "~> 1.2"}
     ]
   end
 

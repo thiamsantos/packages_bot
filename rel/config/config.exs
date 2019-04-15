@@ -8,7 +8,7 @@ fetch_env! = fn key ->
 end
 
 config :nadia,
-  token: fetch_env!.("TELEGRAM_BOT_TOKEN")
+  token: fetch_env!.("MELPA_BOT_TOKEN")
 
 config :packages_bot,
   ecto_repos: [PackagesBot.Repo]

@@ -1,25 +1,27 @@
 defmodule PackagesBot.Messager do
   alias PackagesBot.Packages
+  alias PackagesBot.TelegramClient
 
   require Logger
 
-  def answer_inline_query(inline_query_id, pattern) do
+  def answer_inline_query(bot_token, inline_query_id, pattern) do
     result =
       pattern
       |> Packages.search_package()
       |> Enum.map(fn package ->
-        %Nadia.Model.InlineQueryResult.Article{
+        %{
+          type: "article",
           id: package.id,
           title: package.name,
           description: package.description,
-          input_message_content: %Nadia.Model.InputMessageContent.Text{
+          input_message_content: %{
             message_text:
               "<strong>Package</strong>: #{package.name}\n<strong>Description</strong>: #{
                 package.description
               }\n\n<strong>Total downloads</strong>: #{package.total_downloads}",
             parse_mode: "HTML"
           },
-          reply_markup: %Nadia.Model.InlineKeyboardMarkup{
+          reply_markup: %{
             inline_keyboard: [
               build_inline_keyboard(package)
             ]
@@ -27,7 +29,7 @@ defmodule PackagesBot.Messager do
         }
       end)
 
-    :ok = Nadia.answer_inline_query(inline_query_id, result)
+    :ok = TelegramClient.answer_inline_query(bot_token, inline_query_id, result)
 
     Logger.info("[#{__MODULE__}] Answered #{inspect(pattern)} with success!")
   end
