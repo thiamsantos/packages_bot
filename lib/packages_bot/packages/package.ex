@@ -2,7 +2,7 @@ defmodule PackagesBot.Packages.Package do
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "packages" do
+  schema "melpa_packages" do
     field :name, :string
     field :description, :string
     field :recipe, :string
