@@ -1,5 +1,5 @@
-defmodule MelpaBot.Messager do
-  alias MelpaBot.Packages
+defmodule PackagesBot.Messager do
+  alias PackagesBot.Packages
 
   require Logger
 

@@ -9,13 +9,13 @@ __ENV__.file()
 config :nadia,
   token: Dotenv.fetch_env!("TELEGRAM_BOT_TOKEN")
 
-config :melpa_bot,
-  ecto_repos: [MelpaBot.Repo],
+config :packages_bot,
+  ecto_repos: [PackagesBot.Repo],
   env: Mix.env()
 
-config :melpa_bot, MelpaBot.Repo, url: Dotenv.fetch_env!("DATABASE_URL")
+config :packages_bot, PackagesBot.Repo, url: Dotenv.fetch_env!("DATABASE_URL")
 
-config :melpa_bot, MelpaBot.Archive,
+config :packages_bot, PackagesBot.Archive,
   renew_interval_in_seconds: Dotenv.fetch_integer_env!("ARCHIVE_RENEW_INTERVAL_IN_SECONDS")
 
 import_config "#{Mix.env()}.exs"

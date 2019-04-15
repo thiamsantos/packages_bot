@@ -1,4 +1,4 @@
-defmodule MelpaBot.ReleaseTasks do
+defmodule PackagesBot.ReleaseTasks do
   @start_apps [
     :crypto,
     :ssl,
@@ -8,7 +8,7 @@ defmodule MelpaBot.ReleaseTasks do
     :ecto_sql
   ]
 
-  @repos Application.get_env(:melpa_bot, :ecto_repos, [])
+  @repos Application.get_env(:packages_bot, :ecto_repos, [])
 
   def migrate(_argv) do
     start_services()

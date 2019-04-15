@@ -1,4 +1,4 @@
-defmodule MelpaBot.Poller do
+defmodule PackagesBot.Poller do
   use GenServer
 
   require Logger
@@ -59,8 +59,8 @@ defmodule MelpaBot.Poller do
 
   defp answer_inline_query(inline_query_id, pattern) do
     Task.Supervisor.start_child(
-      MelpaBot.MessageSupervisor,
-      MelpaBot.Messager,
+      PackagesBot.MessageSupervisor,
+      PackagesBot.Messager,
       :answer_inline_query,
       [inline_query_id, pattern]
     )

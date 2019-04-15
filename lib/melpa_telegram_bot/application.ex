@@ -1,4 +1,4 @@
-defmodule MelpaBot.Application do
+defmodule PackagesBot.Application do
   @moduledoc false
 
   use Application
@@ -6,26 +6,26 @@ defmodule MelpaBot.Application do
   def start(_type, _args) do
     children = children(env())
 
-    opts = [strategy: :one_for_one, name: MelpaBot.Supervisor]
+    opts = [strategy: :one_for_one, name: PackagesBot.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
   defp children(:test) do
     [
-      {MelpaBot.Repo, []}
+      {PackagesBot.Repo, []}
     ]
   end
 
   defp children(_) do
     [
-      {Task.Supervisor, name: MelpaBot.MessageSupervisor},
-      {MelpaBot.Repo, []},
-      {MelpaBot.Archive, []},
-      {MelpaBot.Poller, []}
+      {Task.Supervisor, name: PackagesBot.MessageSupervisor},
+      {PackagesBot.Repo, []},
+      {PackagesBot.Archive, []},
+      {PackagesBot.Poller, []}
     ]
   end
 
   defp env do
-    Application.fetch_env!(:melpa_bot, :env)
+    Application.fetch_env!(:packages_bot, :env)
   end
 end

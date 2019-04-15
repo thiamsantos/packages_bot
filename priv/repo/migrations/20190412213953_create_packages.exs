@@ -1,4 +1,4 @@
-defmodule MelpaBot.Repo.Migrations.CreatePackages do
+defmodule PackagesBot.Repo.Migrations.CreatePackages do
   use Ecto.Migration
 
   def change do

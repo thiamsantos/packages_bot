@@ -1,4 +1,4 @@
-defmodule MelpaBotTest do
+defmodule PackagesBotTest do
   use ExUnit.Case, async: true
 
   test "greets the world" do

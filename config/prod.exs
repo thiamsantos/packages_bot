@@ -1,6 +1,6 @@
 use Mix.Config
 
-config :melpa_bot, MelpaBot.Repo, pool_size: 2
+config :packages_bot, PackagesBot.Repo, pool_size: 2
 
 config :logger,
   backends: [Timber.LoggerBackends.HTTP],

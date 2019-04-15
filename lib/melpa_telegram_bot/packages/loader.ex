@@ -1,6 +1,6 @@
-defmodule MelpaBot.Packages.Loader do
-  alias MelpaBot.Packages.Package
-  alias MelpaBot.Repo
+defmodule PackagesBot.Packages.Loader do
+  alias PackagesBot.Packages.Package
+  alias PackagesBot.Repo
   import Ecto.Query
 
   def search_package(pattern) do

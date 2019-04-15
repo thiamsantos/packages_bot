@@ -1,7 +1,7 @@
-defmodule MelpaBot.Archive do
+defmodule PackagesBot.Archive do
   use GenServer
 
-  alias MelpaBot.Packages
+  alias PackagesBot.Packages
 
   require Logger
 
@@ -44,7 +44,7 @@ defmodule MelpaBot.Archive do
   end
 
   defp renew_interval do
-    :melpa_bot
+    :packages_bot
     |> Application.fetch_env!(__MODULE__)
     |> Keyword.fetch!(:renew_interval_in_seconds)
     |> :timer.seconds()

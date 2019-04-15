@@ -1,2 +1,2 @@
-defmodule MelpaBot do
+defmodule PackagesBot do
 end

@@ -22,10 +22,10 @@ environment :prod do
   ]
 end
 
-release :melpa_bot do
-  set version: current_version(:melpa_bot)
+release :packages_bot do
+  set version: current_version(:packages_bot)
   set applications: [
     :runtime_tools,
-    melpa_bot: :permanent
+    packages_bot: :permanent
   ]
 end

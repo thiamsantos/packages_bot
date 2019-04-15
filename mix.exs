@@ -1,9 +1,9 @@
-defmodule MelpaBot.MixProject do
+defmodule PackagesBot.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :melpa_bot,
+      app: :packages_bot,
       version: "0.1.0",
       elixir: "~> 1.8",
       start_permanent: Mix.env() == :prod,
@@ -23,7 +23,7 @@ defmodule MelpaBot.MixProject do
   def application do
     [
       extra_applications: [:logger],
-      mod: {MelpaBot.Application, []}
+      mod: {PackagesBot.Application, []}
     ]
   end
 

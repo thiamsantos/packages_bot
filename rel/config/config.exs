@@ -10,12 +10,12 @@ end
 config :nadia,
   token: fetch_env!.("TELEGRAM_BOT_TOKEN")
 
-config :melpa_bot,
-  ecto_repos: [MelpaBot.Repo]
+config :packages_bot,
+  ecto_repos: [PackagesBot.Repo]
 
-config :melpa_bot, MelpaBot.Repo, url: fetch_env!.("DATABASE_URL")
+config :packages_bot, PackagesBot.Repo, url: fetch_env!.("DATABASE_URL")
 
-config :melpa_bot, MelpaBot.Archive,
+config :packages_bot, PackagesBot.Archive,
   renew_interval_in_seconds: "ARCHIVE_RENEW_INTERVAL_IN_SECONDS" |> fetch_env!.() |> String.to_integer()
 
  config :timber,

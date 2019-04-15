@@ -3,11 +3,11 @@ language: elixir
 env:
   global:
     - CI=true
-    - PGDATABASE=melpa_bot
+    - PGDATABASE=packages_bot
     - PGUSER=postgres
     - PGPASSWORD=postgres
     - PGHOST=localhost
-    - DATABASE_URL=postgres://postgres:postgres@localhost/melpa_bot
+    - DATABASE_URL=postgres://postgres:postgres@localhost/packages_bot
     - ARCHIVE_RENEW_INTERVAL_IN_SECONDS=3600
     - TELEGRAM_BOT_TOKEN=fake_token
     - MIX_ENV=test
