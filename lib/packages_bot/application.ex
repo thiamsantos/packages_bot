@@ -20,8 +20,8 @@ defmodule PackagesBot.Application do
     [
       {Task.Supervisor, name: PackagesBot.MessageSupervisor},
       {PackagesBot.Repo, []},
-      {PackagesBot.Archive, []},
-      {PackagesBot.Poller, []}
+      {PackagesBot.Melpa.Archive, []},
+      {PackagesBot.Poller, adapter: PackagesBot.Melpa}
     ]
   end
 

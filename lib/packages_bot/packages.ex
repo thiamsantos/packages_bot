@@ -1,18 +1,18 @@
 defmodule PackagesBot.Packages do
   alias PackagesBot.Packages.{Loader, Package}
   alias PackagesBot.Repo
-  alias PackagesBot.MelpaClient
+  alias PackagesBot.Melpa.Client
 
   require Logger
 
   def renew_packages do
-    MelpaClient.archive()
+    Client.archive()
     |> parse_packages()
     |> insert_all_packages()
   end
 
   def renew_download_counts do
-    MelpaClient.download_counts()
+    Client.download_counts()
     |> parse_download_counts()
     |> insert_all_download_counts()
   end

@@ -1,4 +1,4 @@
-defmodule PackagesBot.Archive do
+defmodule PackagesBot.Melpa.Archive do
   use GenServer
 
   alias PackagesBot.Packages

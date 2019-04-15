@@ -3,8 +3,9 @@ defmodule PackagesBot.Poller do
 
   require Logger
 
-  def start_link(_opts) do
-    GenServer.start_link(__MODULE__, %{offset: 0})
+  def start_link(opts) do
+    adapter = Keyword.fetch!(opts, :adapter)
+    GenServer.start_link(__MODULE__, %{offset: 0, adapter: adapter})
   end
 
   def init(state) do
@@ -15,30 +16,30 @@ defmodule PackagesBot.Poller do
     {:ok, state}
   end
 
-  def handle_info(:poll, %{offset: current_offset}) do
+  def handle_info(:poll, %{offset: current_offset, adapter: adapter} = state) do
     new_offset =
-      bot_token()
+      adapter.bot_token()
       |> PackagesBot.TelegramClient.get_updates(current_offset)
-      |> handle_updates(current_offset)
+      |> handle_updates(state)
 
-    {:noreply, %{offset: new_offset}}
+    {:noreply, %{state | offset: new_offset}}
   end
 
-  defp handle_updates({:ok, []}, current_offset), do: current_offset
+  defp handle_updates({:ok, []}, %{offset: current_offset}), do: current_offset
 
-  defp handle_updates({:ok, updates}, _current_offset) when is_list(updates) do
-    updates
-    |> send_messages()
+  defp handle_updates({:ok, updates}, %{adapter: adapter}) when is_list(updates) do
+    adapter
+    |> send_messages(updates)
     |> get_new_offset()
   end
 
-  defp handle_updates(_other, current_offset), do: current_offset
+  defp handle_updates(_other, %{offset: current_offset}), do: current_offset
 
-  defp send_messages(updates) do
+  defp send_messages(adapter, updates) do
     Enum.each(updates, fn update ->
       case update do
         %{"inline_query" => %{"id" => inline_query_id, "query" => pattern}} ->
-          answer_inline_query(inline_query_id, pattern)
+          answer_inline_query(adapter, inline_query_id, pattern)
 
         other ->
           other
@@ -57,18 +58,12 @@ defmodule PackagesBot.Poller do
     update_id + 1
   end
 
-  defp answer_inline_query(inline_query_id, pattern) do
+  defp answer_inline_query(adapter, inline_query_id, pattern) do
     Task.Supervisor.start_child(
       PackagesBot.MessageSupervisor,
       PackagesBot.Messager,
       :answer_inline_query,
-      [bot_token(), inline_query_id, pattern]
+      [adapter, inline_query_id, pattern]
     )
-  end
-
-  defp bot_token do
-    :packages_bot
-    |> Application.fetch_env!(__MODULE__)
-    |> Keyword.fetch!(:bot_token)
   end
 end

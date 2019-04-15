@@ -1,4 +1,4 @@
-defmodule PackagesBot.MelpaClient do
+defmodule PackagesBot.Melpa.Client do
   use Tesla
 
   plug Tesla.Middleware.BaseUrl, "https://melpa.org"

@@ -1,13 +1,12 @@
 defmodule PackagesBot.Messager do
-  alias PackagesBot.Packages
   alias PackagesBot.TelegramClient
 
   require Logger
 
-  def answer_inline_query(bot_token, inline_query_id, pattern) do
+  def answer_inline_query(adapter, inline_query_id, pattern) do
     result =
       pattern
-      |> Packages.search_package()
+      |> adapter.search_package()
       |> Enum.map(fn package ->
         %{
           type: "article",
@@ -29,9 +28,9 @@ defmodule PackagesBot.Messager do
         }
       end)
 
-    :ok = TelegramClient.answer_inline_query(bot_token, inline_query_id, result)
+    :ok = TelegramClient.answer_inline_query(adapter.bot_token, inline_query_id, result)
 
-    Logger.info("[#{__MODULE__}] Answered #{inspect(pattern)} with success!")
+    Logger.info("[#{__MODULE__}] Answered #{inspect(pattern)} with success for #{adapter}!")
   end
 
   defp build_inline_keyboard(package) do
