@@ -2,7 +2,7 @@ defmodule PackagesBot.Melpa.Client do
   use Tesla
 
   plug Tesla.Middleware.BaseUrl, "https://melpa.org"
-  plug Tesla.Middleware.Logger
+  plug PackagesBot.TeslaLogger, marker: __MODULE__
   plug Tesla.Middleware.JSON
 
   def archive do
