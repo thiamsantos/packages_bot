@@ -157,6 +157,7 @@ defmodule PackagesBot.Melpa.PackagesTest do
       assert package.inserted_at == now
       assert package.updated_at == now
     end
+
     test "missing homepage" do
       now = NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second)
 
@@ -183,7 +184,7 @@ defmodule PackagesBot.Melpa.PackagesTest do
                   "commit" => "6f99367511ae209f8fe2c990779764bbb4ccb6ed",
                   "keywords" => ["languages", "elixir", "elixirc", "mix", "hex", "alchemist"],
                   "authors" => ["Samuel Tonini <tonini.samuel@gmail.com>"],
-                  "maintainer" => "Samuel Tonini <tonini.samuel@gmail.com>",
+                  "maintainer" => "Samuel Tonini <tonini.samuel@gmail.com>"
                 }
               }
             }
