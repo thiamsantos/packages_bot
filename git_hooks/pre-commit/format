@@ -4,6 +4,7 @@ for file in $(git diff --name-only --staged --diff-filter=d | sort | uniq | grep
 do
   if [ -f "$file" ]
   then
+    echo "[pre-commit] Formatting $file"
     mix format $file
     git add $file
   fi
