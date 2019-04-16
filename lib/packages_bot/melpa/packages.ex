@@ -1,7 +1,7 @@
 defmodule PackagesBot.Melpa.Packages do
   alias PackagesBot.Melpa.Client
   alias PackagesBot.Melpa.Packages.{Loader, Package}
-  alias PackagesBot.Repo
+  alias PackagesBot.{CurrentTime, Repo}
 
   require Logger
 
@@ -29,8 +29,8 @@ defmodule PackagesBot.Melpa.Packages do
           description: Map.get(meta, "desc"),
           recipe: "https://github.com/melpa/melpa/blob/master/recipes/#{name}",
           homepage: get_in(meta, [Access.key("props", %{}), "url"]),
-          inserted_at: NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second),
-          updated_at: NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second)
+          inserted_at: CurrentTime.naive_now(),
+          updated_at: CurrentTime.naive_now()
         }
       end)
 
@@ -46,8 +46,8 @@ defmodule PackagesBot.Melpa.Packages do
           name: name,
           recipe: "https://github.com/melpa/melpa/blob/master/recipes/#{name}",
           total_downloads: total_downloads,
-          inserted_at: NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second),
-          updated_at: NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second)
+          inserted_at: CurrentTime.naive_now(),
+          updated_at: CurrentTime.naive_now()
         }
       end)
 
@@ -57,18 +57,24 @@ defmodule PackagesBot.Melpa.Packages do
   defp insert_all_packages({:error, reason}), do: {:error, reason}
 
   defp insert_all_packages({:ok, packages}) do
-    Repo.insert_all(Package, packages,
-      conflict_target: :name,
-      on_conflict: {:replace, [:description, :recipe, :homepage, :updated_at]}
-    )
+    {entries, _result} =
+      Repo.insert_all(Package, packages,
+        conflict_target: :name,
+        on_conflict: {:replace, [:description, :recipe, :homepage, :updated_at]}
+      )
+
+    {:ok, entries}
   end
 
   defp insert_all_download_counts({:error, reason}), do: {:error, reason}
 
   defp insert_all_download_counts({:ok, download_counts}) do
-    Repo.insert_all(Package, download_counts,
-      conflict_target: :name,
-      on_conflict: {:replace, [:recipe, :total_downloads, :updated_at]}
-    )
+    {entries, _result} =
+      Repo.insert_all(Package, download_counts,
+        conflict_target: :name,
+        on_conflict: {:replace, [:recipe, :total_downloads, :updated_at]}
+      )
+
+    {:ok, entries}
   end
 end

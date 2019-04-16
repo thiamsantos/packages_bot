@@ -30,10 +30,10 @@ defmodule PackagesBot.Melpa.Archive do
   defp update_archive do
     Logger.info("[#{__MODULE__}] Updating archive.")
 
-    {packages_renewed, _} = Packages.renew_packages()
+    {:ok, packages_renewed} = Packages.renew_packages()
     Logger.info("[#{__MODULE__}] Updated #{packages_renewed} packages.")
 
-    {packages_downloads_renewed, _} = Packages.renew_download_counts()
+    {:ok, packages_downloads_renewed} = Packages.renew_download_counts()
     Logger.info("[#{__MODULE__}] Updated #{packages_downloads_renewed} download counts.")
 
     schedule_update()

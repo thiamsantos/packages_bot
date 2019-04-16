@@ -17,4 +17,6 @@ config :packages_bot, PackagesBot.Melpa.Archive,
 
 config :packages_bot, PackagesBot.Melpa, bot_token: Dotenv.fetch_env!("MELPA_BOT_TOKEN")
 
+config :packages_bot, PackagesBot.CurrentTime, adapter: PackagesBot.CurrentTime.SystemAdapter
+
 import_config "#{Mix.env()}.exs"
