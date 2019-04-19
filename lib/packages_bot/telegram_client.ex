@@ -1,4 +1,6 @@
 defmodule PackagesBot.TelegramClient do
+  require Logger
+
   def get_updates(bot_token, offset) do
     bot_token
     |> build_client()
@@ -36,6 +38,16 @@ defmodule PackagesBot.TelegramClient do
 
   defp handle_answer_inline({:ok, %{status: 200, body: %{"ok" => true}}}) do
     :ok
+  end
+
+  defp handle_answer_inline({:ok, %{status: status, body: body}}) do
+    Logger.error(
+      "[#{__MODULE__}] Failed to answer inline query. status: [#{inspect(status)}], body: #{
+        inspect(body)
+      }"
+    )
+
+    {:error, "Failed to answer inline query!"}
   end
 
   defp handle_answer_inline(_) do

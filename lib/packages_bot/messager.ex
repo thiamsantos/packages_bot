@@ -16,7 +16,7 @@ defmodule PackagesBot.Messager do
 
     result = Enum.map(packages, &format_package/1)
 
-    :ok = TelegramClient.answer_inline_query(adapter.bot_token, inline_query_id, result)
+    TelegramClient.answer_inline_query(adapter.bot_token, inline_query_id, result)
 
     Logger.info("[#{__MODULE__}] Answered #{inspect(pattern)} with success for #{adapter}!")
   end
