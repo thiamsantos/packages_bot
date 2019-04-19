@@ -1,5 +1,8 @@
 language: elixir
 
+addons:
+  postgresql: "9.6"
+
 env:
   global:
     - CI=true
