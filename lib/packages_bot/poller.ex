@@ -8,12 +8,19 @@ defmodule PackagesBot.Poller do
     GenServer.start_link(__MODULE__, %{offset: 0, adapter: adapter})
   end
 
-  def init(state) do
+  def init(%{adapter: adapter} = state) do
     :timer.send_interval(500, :poll)
 
-    Logger.info("[#{__MODULE__}] Running.")
+    Logger.info("[#{__MODULE__}] running with #{adapter} adapter.")
 
     {:ok, state}
+  end
+
+  def child_spec(opts) do
+    %{
+      id: Keyword.fetch!(opts, :adapter),
+      start: {__MODULE__, :start_link, [opts]}
+    }
   end
 
   def handle_info(:poll, %{offset: current_offset, adapter: adapter} = state) do
@@ -37,12 +44,9 @@ defmodule PackagesBot.Poller do
 
   defp send_messages(adapter, updates) do
     Enum.each(updates, fn update ->
-      case update do
-        %{"inline_query" => %{"id" => inline_query_id, "query" => pattern}} ->
-          answer_inline_query(adapter, inline_query_id, pattern)
-
-        other ->
-          other
+      with %{"inline_query" => %{"id" => inline_query_id, "query" => pattern}} when pattern != "" <-
+             update do
+        answer_inline_query(adapter, inline_query_id, pattern)
       end
     end)
 

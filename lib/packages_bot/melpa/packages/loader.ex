@@ -14,6 +14,11 @@ defmodule PackagesBot.Melpa.Packages.Loader do
         limit: 5
       )
 
-    Repo.all(query)
+    packages =
+      query
+      |> Repo.all()
+      |> Enum.map(&Package.to_telegram/1)
+
+    {:ok, packages}
   end
 end

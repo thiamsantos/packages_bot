@@ -1,7 +1,7 @@
-defmodule PackagesBot.Melpa do
+defmodule PackagesBot.Hexpm do
   @behaviour PackagesBot.Adapter
 
-  alias PackagesBot.Melpa.Packages
+  alias PackagesBot.Hexpm.Packages
 
   @impl true
   def bot_token do
@@ -11,7 +11,5 @@ defmodule PackagesBot.Melpa do
   end
 
   @impl true
-  def search_package(pattern) do
-    Packages.search_package(pattern)
-  end
+  defdelegate search_package(pattern), to: Packages, as: :search
 end

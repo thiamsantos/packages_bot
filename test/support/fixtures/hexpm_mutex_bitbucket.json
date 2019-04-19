@@ -1,0 +1,93 @@
+[
+  {
+    "docs_html_url": null,
+    "downloads": {
+      "all": 10559,
+      "day": 47,
+      "recent": 2131,
+      "week": 221
+    },
+    "html_url": "https://hex.pm/packages/mutex",
+    "inserted_at": "2017-07-10T23:23:01.426902Z",
+    "meta": {
+      "description": "This package implements a simple mutex as a GenServer. It allows to await\nlocked keys and handles locking multiple keys without deadlocks.",
+      "licenses": [
+        "MIT"
+      ],
+      "links": {
+        "Bitbucket": "https://bitbucket.org/niahoo/mutex"
+      },
+      "maintainers": [
+        "niahoo osef <dev@ooha.in>"
+      ]
+    },
+    "name": "mutex",
+    "releases": [
+      {
+        "has_docs": false,
+        "url": "https://hex.pm/api/packages/mutex/releases/1.0.2",
+        "version": "1.0.2"
+      },
+      {
+        "has_docs": false,
+        "url": "https://hex.pm/api/packages/mutex/releases/1.0.1",
+        "version": "1.0.1"
+      },
+      {
+        "has_docs": false,
+        "url": "https://hex.pm/api/packages/mutex/releases/1.0.0",
+        "version": "1.0.0"
+      }
+    ],
+    "repository": "hexpm",
+    "retirements": {},
+    "updated_at": "2018-03-02T19:01:55.399146Z",
+    "url": "https://hex.pm/api/packages/mutex"
+  },
+  {
+    "docs_html_url": null,
+    "downloads": {
+      "all": 40,
+      "recent": 40
+    },
+    "html_url": "https://hex.pm/packages/red_mutex",
+    "inserted_at": "2019-03-10T23:56:15.060384Z",
+    "meta": {
+      "description": "Redlock (Redis Distributed Lock) implementation",
+      "licenses": [
+        "Apache 2.0"
+      ],
+      "links": {
+        "BitBucket": "https://bitbucket.org/thiamsantos/red_mutex"
+      },
+      "maintainers": []
+    },
+    "name": "red_mutex",
+    "releases": [
+      {
+        "has_docs": false,
+        "url": "https://hex.pm/api/packages/red_mutex/releases/0.2.2",
+        "version": "0.2.2"
+      },
+      {
+        "has_docs": false,
+        "url": "https://hex.pm/api/packages/red_mutex/releases/0.2.1",
+        "version": "0.2.1"
+      },
+      {
+        "has_docs": false,
+        "url": "https://hex.pm/api/packages/red_mutex/releases/0.2.0",
+        "version": "0.2.0"
+      },
+      {
+        "has_docs": false,
+        "url": "https://hex.pm/api/packages/red_mutex/releases/0.1.0",
+        "version": "0.1.0"
+      }
+    ],
+    "repository": "hexpm",
+    "retirements": {},
+    "updated_at": "2019-04-08T22:57:21.438615Z",
+    "url": "https://hex.pm/api/packages/red_mutex"
+  }
+]

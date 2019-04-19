@@ -1,6 +1,6 @@
 defmodule PackagesBot.Melpa.Packages.Package do
   use Ecto.Schema
-  import Ecto.Changeset
+  import PackagesBot.Package
 
   schema "melpa_packages" do
     field :name, :string
@@ -12,12 +12,13 @@ defmodule PackagesBot.Melpa.Packages.Package do
     timestamps()
   end
 
-  @optional_fields [:description, :homepage, :total_downloads]
-  @required_fields [:name, :recipe]
-
-  @doc false
-  def changeset(package, attrs) do
-    package
-    |> cast(attrs, @optional_fields ++ @required_fields)
+  def to_telegram(%__MODULE__{} = melpa_package) do
+    melpa_package.name
+    |> new_package()
+    |> put_id("melpa:#{melpa_package.id}")
+    |> put_description(melpa_package.description)
+    |> put_total_downloads(melpa_package.total_downloads)
+    |> put_link("Recipe", melpa_package.recipe)
+    |> put_link("Homepage", melpa_package.homepage)
   end
 end

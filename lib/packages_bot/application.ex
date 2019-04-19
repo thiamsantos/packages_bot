@@ -21,7 +21,8 @@ defmodule PackagesBot.Application do
       {Task.Supervisor, name: PackagesBot.MessageSupervisor},
       {PackagesBot.Repo, []},
       {PackagesBot.Melpa.Archive, []},
-      {PackagesBot.Poller, adapter: PackagesBot.Melpa}
+      {PackagesBot.Poller, adapter: PackagesBot.Melpa},
+      {PackagesBot.Poller, adapter: PackagesBot.Hexpm}
     ]
   end
 

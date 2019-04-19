@@ -10,6 +10,7 @@ env:
     - DATABASE_URL=postgres://postgres:postgres@localhost/packages_bot
     - ARCHIVE_RENEW_INTERVAL_IN_SECONDS=3600
     - MELPA_BOT_TOKEN=fake_token
+    - HEXPM_BOT_TOKEN=fake_token
     - MIX_ENV=test
 
 cache:

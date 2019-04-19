@@ -7,9 +7,6 @@ fetch_env! = fn key ->
   end
 end
 
-config :nadia,
-  token: fetch_env!.("MELPA_BOT_TOKEN")
-
 config :packages_bot,
   ecto_repos: [PackagesBot.Repo]
 
@@ -21,3 +18,6 @@ config :packages_bot, PackagesBot.Archive,
  config :timber,
   api_key: fetch_env!.("TIMBER_API_KEY"),
   source_id: fetch_env!.("TIMBER_SOURCE_ID")
+
+config :packages_bot, PackagesBot.Melpa, bot_token: fetch_env.!("MELPA_BOT_TOKEN")
+config :packages_bot, PackagesBot.Hexpm, bot_token: fetch_env.!("HEXPM_BOT_TOKEN")

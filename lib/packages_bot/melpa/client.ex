@@ -2,6 +2,7 @@ defmodule PackagesBot.Melpa.Client do
   use Tesla
 
   plug Tesla.Middleware.BaseUrl, "https://melpa.org"
+  plug Tesla.Middleware.Headers, [{"user-agent", "Melpa telegram bot"}]
   plug PackagesBot.TeslaLogger, marker: __MODULE__
   plug Tesla.Middleware.JSON
 
