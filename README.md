@@ -20,5 +20,3 @@ See the [contributing file](CONTRIBUTING.md).
 
 [Apache License, Version 2.0](LICENSE) © [Thiago Santos](https://github.com/thiamsantos)
 
-
-
