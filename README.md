@@ -1,26 +1,16 @@
-# Melpa Telegram Bot
+# Telegram Package Bots
 
 [![Build Status](https://travis-ci.com/thiamsantos/melpa_telegram_bot.svg?branch=master)](https://travis-ci.com/thiamsantos/melpa_telegram_bot)
 [![Coverage Status](https://coveralls.io/repos/github/thiamsantos/melpa_telegram_bot/badge.svg?branch=master)](https://coveralls.io/github/thiamsantos/melpa_telegram_bot?branch=master)
 
-An inline bot for Telegram that fetches information from [Melpa Emacs Package Repository](melpa.org) and displays it on a nice card-style format.
+There are two Telegram bots on this project.
 
-![bot usage demostration](usage.gif "Usage demostration")
+- `@melpa_bot` to search for packages on [Melpa Emacs Package Repository](http://melpa.org).
+- `@hexpmbot` to search for packages on [Hex Packages Repository](https://hex.pm).
 
-It works by fetching https://melpa.org/archive.json and https://melpa.org/download_counts.json, parsing them and then storing the package information on a database every 1 hour. The database is then used to get the information about the package requested.
+Both are inline bots and display package information on a nice card-style format.
 
-## TODO
-
-- [ ] Humanize total downloads response
-- [x] Write Readme
-- [ ] Add tests
-- [x] Add Credo
-- [x] Add CI
-- [x] Add coveralls
-- [x] Add CD
-- [x] Configure GitHooks
-- [x] Configure distillery
-- [x] Deploy on gigalixir
+![melpabot usage demostration](melpabot-usage.gif "Usage demostration")
 
 ## Contributing
 
