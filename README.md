@@ -1,12 +1,18 @@
-# PackagesBot
+# Melpa Telegram Bot
 
 [![Build Status](https://travis-ci.com/thiamsantos/melpa_telegram_bot.svg?branch=master)](https://travis-ci.com/thiamsantos/melpa_telegram_bot)
 [![Coverage Status](https://coveralls.io/repos/github/thiamsantos/melpa_telegram_bot/badge.svg?branch=master)](https://coveralls.io/github/thiamsantos/melpa_telegram_bot?branch=master)
 
+An inline bot for Telegram that fetches information from [Melpa Emacs Package Repository](melpa.org) and displays it on a nice card-style format.
+
+![bot usage demostration](usage.gif "Usage demostration")
+
+It works by fetching https://melpa.org/archive.json and https://melpa.org/download_counts.json, parsing them and then storing the package information on a database every 1 hour. The database is then used to get the information about the package requested.
+
 ## TODO
 
 - [ ] Humanize total downloads response
-- [ ] Write Readme
+- [x] Write Readme
 - [ ] Add tests
 - [x] Add Credo
 - [x] Add CI
@@ -16,12 +22,11 @@
 - [x] Configure distillery
 - [x] Deploy on gigalixir
 
-## Githooks
+## Contributing
 
-We use githooks to ensure file consistency. Make sure to download and install the hooks after cloning the repo.
+See the [contributing file](CONTRIBUTING.md).
 
-```sh
-$ curl -o /usr/local/bin/git-hooks https://raw.githubusercontent.com/icefox/git-hooks/master/git-hooks
-$ chmod +x /usr/local/bin/git-hooks
-$ git-hooks --install
-```
+## License
+
+[Apache License, Version 2.0](LICENSE) © [Thiago Santos](https://github.com/thiamsantos)
+
