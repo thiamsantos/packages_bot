@@ -1,7 +1,7 @@
 # Telegram Package Bots
 
-[![Build Status](https://travis-ci.com/thiamsantos/melpa_telegram_bot.svg?branch=master)](https://travis-ci.com/thiamsantos/melpa_telegram_bot)
-[![Coverage Status](https://coveralls.io/repos/github/thiamsantos/melpa_telegram_bot/badge.svg?branch=master)](https://coveralls.io/github/thiamsantos/melpa_telegram_bot?branch=master)
+[![Build Status](https://travis-ci.com/thiamsantos/packages_bot.svg?branch=master)](https://travis-ci.com/thiamsantos/packages_bot)
+[![Coverage Status](https://coveralls.io/repos/github/thiamsantos/packages_bot/badge.svg?branch=master)](https://coveralls.io/github/thiamsantos/packages_bot?branch=master)
 
 There are two Telegram bots on this project.
 
@@ -19,4 +19,3 @@ See the [contributing file](CONTRIBUTING.md).
 ## License
 
 [Apache License, Version 2.0](LICENSE) © [Thiago Santos](https://github.com/thiamsantos)
-
