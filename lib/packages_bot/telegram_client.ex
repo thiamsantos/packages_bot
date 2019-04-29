@@ -40,16 +40,6 @@ defmodule PackagesBot.TelegramClient do
     :ok
   end
 
-  defp handle_answer_inline({:ok, %{status: status, body: body}}) do
-    Logger.error(
-      "[#{__MODULE__}] Failed to answer inline query. status: [#{inspect(status)}], body: #{
-        inspect(body)
-      }"
-    )
-
-    {:error, "Failed to answer inline query!"}
-  end
-
   defp handle_answer_inline(_) do
     {:error, "Failed to answer inline query!"}
   end
