@@ -7,6 +7,7 @@ There are two Telegram bots on this project.
 
 - `@melpa_bot` to search for packages on [Melpa Emacs Package Repository](http://melpa.org).
 - `@hexpmbot` to search for packages on [Hex Packages Repository](https://hex.pm).
+- `@rubygems_bot` to search for packages on [RubyGems Packages Repository](https://rubygems.org/).
 
 Both are inline bots and display package information on a nice card-style format.
 

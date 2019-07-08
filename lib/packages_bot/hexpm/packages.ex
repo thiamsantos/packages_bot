@@ -1,6 +1,6 @@
 defmodule PackagesBot.Hexpm.Packages do
-  alias PackagesBot.Hexpm.Client
   import PackagesBot.Package
+  alias PackagesBot.Hexpm.Client
 
   def search(pattern) do
     pattern

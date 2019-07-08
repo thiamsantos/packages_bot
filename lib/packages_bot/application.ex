@@ -22,7 +22,8 @@ defmodule PackagesBot.Application do
       {PackagesBot.Repo, []},
       {PackagesBot.Melpa.Archive, []},
       {PackagesBot.Poller, adapter: PackagesBot.Melpa},
-      {PackagesBot.Poller, adapter: PackagesBot.Hexpm}
+      {PackagesBot.Poller, adapter: PackagesBot.Hexpm},
+      {PackagesBot.Poller, adapter: PackagesBot.RubyGems}
     ]
   end
 
