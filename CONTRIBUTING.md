@@ -23,16 +23,6 @@ And submit your pull request after making sure that all tests pass and they are 
 - Push to the branch: `git push origin my-new-feature`
 - Submit a pull request with full remarks documenting your changes.
 
-## Githooks
-
-We use githooks to ensure file consistency. Make sure to download and install the hooks after cloning the repo.
-
-```sh
-$ curl -o /usr/local/bin/git-hooks https://raw.githubusercontent.com/icefox/git-hooks/master/git-hooks
-$ chmod +x /usr/local/bin/git-hooks
-$ git-hooks --install
-```
-
 ## Running locally
 To install and run the bot locally:
 
