@@ -27,7 +27,6 @@ And submit your pull request after making sure that all tests pass and they are 
 To install and run the bot locally:
 
 - Clone the repo: `git clone https://github.com/thiamsantos/packages_bot`
-- Install the [githooks](#githooks)
 - Navigate to the newly cloned directory: `cd packages_bot`
 - Run `mix deps.get`
 - Run `docker-compose up` to mount the database instance
