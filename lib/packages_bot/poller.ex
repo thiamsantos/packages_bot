@@ -16,7 +16,7 @@ defmodule PackagesBot.Poller do
   end
 
   def init(%{adapter: adapter} = state) do
-    Logger.info("[#{__MODULE__}] running with #{adapter} adapter.")
+    Logger.info("Running with #{adapter} adapter.")
 
     {:ok, state, {:continue, :poll}}
   end

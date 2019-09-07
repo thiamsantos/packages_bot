@@ -18,12 +18,12 @@ defmodule PackagesBot.Messager do
 
     TelegramClient.answer_inline_query(adapter.bot_token, inline_query_id, result)
 
-    Logger.info("[#{__MODULE__}] Answered #{inspect(pattern)} with success for #{adapter}!")
+    Logger.info("Answered #{inspect(pattern)} with success for #{adapter}!")
   end
 
   defp handle_search({:error, reason}, %{adapter: adapter, pattern: pattern}) do
     Logger.error(
-      "[#{__MODULE__}] Failed to answer #{inspect(pattern)} for #{adapter} with #{inspect(reason)}!"
+      "Failed to answer #{inspect(pattern)} for #{adapter} with #{inspect(reason)}!"
     )
   end
 

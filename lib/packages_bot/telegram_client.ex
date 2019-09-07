@@ -1,6 +1,4 @@
 defmodule PackagesBot.TelegramClient do
-  require Logger
-
   def get_updates(bot_token, offset) do
     bot_token
     |> build_client()

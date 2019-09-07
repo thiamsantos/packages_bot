@@ -3,8 +3,6 @@ defmodule PackagesBot.Melpa.Packages do
   alias PackagesBot.Melpa.Packages.{Loader, Package}
   alias PackagesBot.{CurrentTime, Repo}
 
-  require Logger
-
   def renew_packages do
     Client.archive()
     |> parse_packages()
