@@ -22,9 +22,7 @@ defmodule PackagesBot.Messager do
   end
 
   defp handle_search({:error, reason}, %{adapter: adapter, pattern: pattern}) do
-    Logger.error(
-      "Failed to answer #{inspect(pattern)} for #{adapter} with #{inspect(reason)}!"
-    )
+    Logger.error("Failed to answer #{inspect(pattern)} for #{adapter} with #{inspect(reason)}!")
   end
 
   defp format_package(%Package{} = package) do
