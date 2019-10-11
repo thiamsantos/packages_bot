@@ -3,7 +3,7 @@ use Mix.Config
 config :packages_bot, PackagesBot.Repo, pool_size: 2
 
 config :logger,
-  backends: [Timber.LoggerBackends.HTTP],
+  backends: [Logger.Backends.Console, Timber.LoggerBackends.HTTP],
   level: :info,
   metadata: [:module],
   format: "$time $metadata[$level] $message\n"
