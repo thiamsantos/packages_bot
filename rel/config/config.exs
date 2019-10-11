@@ -22,3 +22,5 @@ config :packages_bot, PackagesBot.Archive,
 config :packages_bot, PackagesBot.Melpa, bot_token: fetch_env!.("MELPA_BOT_TOKEN")
 config :packages_bot, PackagesBot.Hexpm, bot_token: fetch_env!.("HEXPM_BOT_TOKEN")
 config :packages_bot, PackagesBot.RubyGems, bot_token: fetch_env!.("RUBY_GEMS_BOT_TOKEN")
+
+config :gen_tcp_accept_and_close, port: "PORT" |> fetch_env!.() |> String.to_integer()
