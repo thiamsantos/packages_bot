@@ -42,8 +42,5 @@ services:
   - postgresql
 
 deploy:
-  provider: heroku
-  app: packages-bot
-  strategy: git
-  api_key:
-    secure: GvqUBspoKPYYXAu8GNvSuBdNNpYo4nauC7i9GTgeiKXRmEKYH03EQE5IxF1mbr2o6ZngFm2iy23XUX8DtWVXL+4OnI1e3RfMk2FkADiJHxZoa2SWLz3n6rBWPVYcmHJxJ7Gof0hhV77o0nX5JowWDmeIzqBH87sUEuS6LO2iLVrvZrlrByO80gCae8zFgPOZyNhXRXY3J/ynejs8H4yK8rKR0RYhtuCB9PGR35V0MNZHMT0R5ZR16Sd8w1By6jtmgAbd5vjB4ybyZS8gdMR7VhB2qdTAf9qW13MheEUzDPejB01ILqjvJCquzAUJhbhfoKlHWdGdb+0VN7+GJNnxI6T9kN9tJqBs4jSkN9bfIAnqQ/Yxjahxx0n17Q0FpSuztJ4DIwpYa/u5hqBLkqR6sfMOe4E1/OrZBe03Qv+AiuaxTsSSMVJa2tvVbX+XZDkuusdcL75edOTr0le2jVqsEH9UBxWXS+P5qT16mvDugjMhss5odYUz8yAq5sXF5FgeD+vJnEc2IWkO5DXoK1hplDnilYmCFU/Yc2EeTcbLof0TVgmkgTqoWUGG9qsG2eDfMtLH+jztQ/c7eKQrzHLF8PYNteusvi1QWNM2vl6d2uvDLM+w2w/WdIKtvV1aLlXXSiSVd1V2cKrJ2kmNsitLXyKIEYBO21qnzhGoUjZATEs=
+  provider: script
+  script: sh deploy.sh
