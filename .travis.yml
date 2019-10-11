@@ -1,7 +1,7 @@
 language: elixir
 
 addons:
-  postgresql: "9.6"
+  postgresql: '9.6'
 
 env:
   global:
@@ -42,10 +42,7 @@ services:
   - postgresql
 
 deploy:
-  provider: script
-  script: sh deploy.sh
-
-notifications:
-  slack:
-    secure: NIzRode0iY78OlMwVvGkz+E/vJtzucZZf1+hy9BTvTn4ANO40yEuBPCeOrHPO0rJDV+02Wih6kcjQh/pKs+8elG7JGLDWHui3wideS5AOU5S5pyYgyFbVcX5xlOQhypdAX1j6NksBQYO3g1KsvBFQkkXDhR9Z7fGKwjIkA5Ynul3FT/syDr/hgm4HpncxZ0tVgCzOYi5jHYMoDtie/vf3jsP2XOA0l1Bb+HXDut8qeh+TNvbhNLsZjTAMcXqcYSBF0t41Ha9ibn6hX4AtdFKP4KoPJr3GfjApDk81HHU7jnAci/BmF4cbNJk6BYpdEXmBBJ3sT1cBYiz2yH1KMUVSQbSXtv5hhOZmH85jDwXTL3zZaFkAB62Fii2tH4mTK0p0l+JbaNw76b68eMmkiw8OOoX5SSqG6fZ62JQVbJKyHUUag1t+ihj9fRxTSBGTbLW4vwzKNUunMGOAh2w4xUYK20ZkXpkYc76t3e8fqi5NZwM7a+9QwNhifftEzar1Rk5o7QcjluUAxZTJJgttPc2AwoD27SJDY67vu59EdUMHoFtWLO4ZAfoUkiWI0JnZZ+ansvoeTWx5sbyJbPuZGAMMnTRDTrEYRPU/fCqfFBL0GVSxzZbEj9a7DjsSEuZgjEVqy0su8S/9ltg8DzZr5z757zevmZCb8oAReWACL8ctzY=
-    on_success: always
+  provider: heroku
+  app: packages-bot
+  api_key:
+    secure: GvqUBspoKPYYXAu8GNvSuBdNNpYo4nauC7i9GTgeiKXRmEKYH03EQE5IxF1mbr2o6ZngFm2iy23XUX8DtWVXL+4OnI1e3RfMk2FkADiJHxZoa2SWLz3n6rBWPVYcmHJxJ7Gof0hhV77o0nX5JowWDmeIzqBH87sUEuS6LO2iLVrvZrlrByO80gCae8zFgPOZyNhXRXY3J/ynejs8H4yK8rKR0RYhtuCB9PGR35V0MNZHMT0R5ZR16Sd8w1By6jtmgAbd5vjB4ybyZS8gdMR7VhB2qdTAf9qW13MheEUzDPejB01ILqjvJCquzAUJhbhfoKlHWdGdb+0VN7+GJNnxI6T9kN9tJqBs4jSkN9bfIAnqQ/Yxjahxx0n17Q0FpSuztJ4DIwpYa/u5hqBLkqR6sfMOe4E1/OrZBe03Qv+AiuaxTsSSMVJa2tvVbX+XZDkuusdcL75edOTr0le2jVqsEH9UBxWXS+P5qT16mvDugjMhss5odYUz8yAq5sXF5FgeD+vJnEc2IWkO5DXoK1hplDnilYmCFU/Yc2EeTcbLof0TVgmkgTqoWUGG9qsG2eDfMtLH+jztQ/c7eKQrzHLF8PYNteusvi1QWNM2vl6d2uvDLM+w2w/WdIKtvV1aLlXXSiSVd1V2cKrJ2kmNsitLXyKIEYBO21qnzhGoUjZATEs=
