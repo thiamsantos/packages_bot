@@ -1,5 +1,5 @@
 FROM elixir:1.8.1-alpine as builder
-RUN apk add inotify-tools make g++
+RUN apk add inotify-tools make g++ openssl bash libstdc++
 
 RUN mix local.hex --force
 RUN mix local.rebar --force
@@ -13,6 +13,6 @@ RUN mix deps.get
 RUN mix release --no-tar
 
 FROM alpine:3.9
-RUN apk add --update openssl bash libstdc++
+RUN apk add --update openssl bash libstdc++ make g++
 WORKDIR /app
 COPY --from=builder /app/_build/prod/rel/packages_bot .
