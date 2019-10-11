@@ -8,6 +8,7 @@ RUN mkdir /app
 COPY . /app
 WORKDIR /app
 
+ENV MIX_ENV prod
 RUN mix deps.get
 RUN mix release --no-tar
 
