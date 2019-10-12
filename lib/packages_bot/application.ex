@@ -6,6 +6,8 @@ defmodule PackagesBot.Application do
   def start(_type, _args) do
     children = children(env())
 
+    {:ok, _} = Logger.add_backend(Sentry.LoggerBackend)
+
     opts = [strategy: :one_for_one, name: PackagesBot.Supervisor]
     Supervisor.start_link(children, opts)
   end

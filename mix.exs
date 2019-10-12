@@ -46,7 +46,8 @@ defmodule PackagesBot.MixProject do
       {:excoveralls, "~> 0.10", only: :test},
       {:mox, "~> 0.5.0", only: :test},
       {:ex_machina, "~> 2.3", only: :test},
-      {:faker, "~> 0.12.0", only: :test}
+      {:faker, "~> 0.12.0", only: :test},
+      {:sentry, "~> 7.1"}
     ]
   end
 

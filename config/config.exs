@@ -21,4 +21,9 @@ config :packages_bot, PackagesBot.RubyGems, bot_token: System.get_env("RUBY_GEMS
 
 config :packages_bot, PackagesBot.CurrentTime, adapter: PackagesBot.CurrentTime.SystemAdapter
 
+config :sentry,
+  dsn: System.get_env("SENTRY_DSN"),
+  included_environments: [:prod],
+  environment_name: Mix.env()
+
 import_config "#{Mix.env()}.exs"
