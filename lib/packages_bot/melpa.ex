@@ -12,6 +12,10 @@ defmodule PackagesBot.Melpa do
 
   @impl true
   def search_package(pattern) do
+    if pattern == "boom" do
+      raise RuntimeError, "boom"
+    end
+
     Packages.search_package(pattern)
   end
 end
