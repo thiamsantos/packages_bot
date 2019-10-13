@@ -19,6 +19,8 @@ config :packages_bot, PackagesBot.Melpa, bot_token: fetch_env!.("MELPA_BOT_TOKEN
 config :packages_bot, PackagesBot.Hexpm, bot_token: fetch_env!.("HEXPM_BOT_TOKEN")
 config :packages_bot, PackagesBot.RubyGems, bot_token: fetch_env!.("RUBY_GEMS_BOT_TOKEN")
 
-config :gen_tcp_accept_and_close, port: "PORT" |> fetch_env!.() |> String.to_integer()
-
 config :sentry, dsn: fetch_env!.("SENTRY_DSN")
+
+config :packages_bot, PackagesBot.Endpoint,
+  http: [port: String.to_integer(System.get_env("PORT") || "4000")],
+  server: true

@@ -3,7 +3,7 @@ use Mix.Config
 config :logger,
   backends: [:console],
   level: :info,
-  metadata: [:module],
+  metadata: [:module, :request_id],
   format: "$time $metadata[$level] $message\n",
   utc_log: true
 

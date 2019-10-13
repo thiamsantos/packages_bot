@@ -14,18 +14,20 @@ defmodule PackagesBot.Application do
 
   defp children(:test) do
     [
-      {PackagesBot.Repo, []}
+      PackagesBot.Repo,
+      PackagesBotWeb.Endpoint
     ]
   end
 
   defp children(_) do
     [
       {Task.Supervisor, name: PackagesBot.MessageSupervisor},
-      {PackagesBot.Repo, []},
-      {PackagesBot.Melpa.Archive, []},
+      PackagesBot.Repo,
+      PackagesBot.Melpa.Archive,
       {PackagesBot.Poller, adapter: PackagesBot.Melpa},
       {PackagesBot.Poller, adapter: PackagesBot.Hexpm},
-      {PackagesBot.Poller, adapter: PackagesBot.RubyGems}
+      {PackagesBot.Poller, adapter: PackagesBot.RubyGems},
+      PackagesBotWeb.Endpoint
     ]
   end
 

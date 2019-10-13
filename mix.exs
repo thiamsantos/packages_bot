@@ -10,6 +10,7 @@ defmodule PackagesBot.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       aliases: aliases(),
+      compilers: [:phoenix] ++ Mix.compilers(),
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
         coveralls: :test,
@@ -39,7 +40,6 @@ defmodule PackagesBot.MixProject do
       {:postgrex, "~> 0.14.2"},
       {:jason, "~> 1.1"},
       {:tesla, "~> 1.2"},
-      {:gen_tcp_accept_and_close, "~> 0.1.0", only: :prod},
       {:timber, "~> 3.1", only: :prod},
       {:credo, "~> 1.0", only: [:dev, :test], runtime: false},
       {:distillery, "~> 2.0", runtime: false},
@@ -47,7 +47,10 @@ defmodule PackagesBot.MixProject do
       {:mox, "~> 0.5.0", only: :test},
       {:ex_machina, "~> 2.3", only: :test},
       {:faker, "~> 0.12.0", only: :test},
-      {:sentry, "~> 7.1"}
+      {:sentry, "~> 7.1"},
+      {:plug_cowboy, "~> 2.1"},
+      {:phoenix, "~> 1.4"},
+      {:heartcheck, "~> 0.4.1"}
     ]
   end
 
