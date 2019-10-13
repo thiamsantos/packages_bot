@@ -21,6 +21,6 @@ config :packages_bot, PackagesBot.RubyGems, bot_token: fetch_env!.("RUBY_GEMS_BO
 
 config :sentry, dsn: fetch_env!.("SENTRY_DSN")
 
-config :packages_bot, PackagesBot.Endpoint,
+config :packages_bot, PackagesBotWeb.Endpoint,
   http: [port: String.to_integer(System.get_env("PORT") || "4000")],
   server: true
