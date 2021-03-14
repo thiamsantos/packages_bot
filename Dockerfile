@@ -1,18 +1,29 @@
-FROM elixir:1.8.1-alpine as builder
-RUN apk add inotify-tools make g++ openssl bash libstdc++
+FROM hexpm/elixir:1.11.1-erlang-23.1.1-alpine-3.12.0 AS build
 
-RUN mix local.hex --force
-RUN mix local.rebar --force
-
-RUN mkdir /app
-COPY . /app
 WORKDIR /app
 
-ENV MIX_ENV prod
-RUN mix deps.get
-RUN mix release --no-tar
+RUN mix local.hex --force && \
+    mix local.rebar --force
 
-FROM alpine:3.9
-RUN apk add --update openssl bash libstdc++ make g++
+ENV MIX_ENV=prod
+
+COPY mix.exs mix.lock ./
+COPY config config
+RUN mix do deps.get, deps.compile
+
+COPY lib lib
+COPY rel rel
+RUN mix do compile, release
+
+FROM alpine:3.12.0 AS app
+RUN apk add --no-cache openssl ncurses-libs
+
 WORKDIR /app
-COPY --from=builder /app/_build/prod/rel/packages_bot .
+
+RUN chown nobody:nobody /app
+
+USER nobody:nobody
+
+COPY --from=build --chown=nobody:nobody /app/_build/prod/rel/packages_bot ./
+
+ENV HOME=/app
