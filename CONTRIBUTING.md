@@ -11,7 +11,6 @@ If don't, just open a [new clear and descriptive issue](https://github.com/thiam
 
 ## Submitting pull requests
 Pull requests are the greatest contributions, so be sure they are focused in scope, and do avoid unrelated commits.
-And submit your pull request after making sure that all tests pass and they are covering 100% of the code.
 
 - Fork it!
 - Clone your fork: `git clone https://github.com/<your-username>/packages_bot`
@@ -29,14 +28,4 @@ To install and run the bot locally:
 - Clone the repo: `git clone https://github.com/thiamsantos/packages_bot`
 - Navigate to the newly cloned directory: `cd packages_bot`
 - Run `mix deps.get`
-- Run `docker-compose up` to mount the database instance
-- Run `mix run --no-halt` to run the bot
-
-## Testing
-Every time you write a test, remember to answer all the questions:
-
-1. What are you testing?
-2. What should it do?
-3. What is the actual output?
-4. What is the expected output?
-5. How can the test be reproduced?
+- Run `mix phx.server` to run the bot
