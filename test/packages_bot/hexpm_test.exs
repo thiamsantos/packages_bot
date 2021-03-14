@@ -1,5 +1,7 @@
 defmodule PackagesBot.HexpmTest do
-  use PackagesBot.DataCase, async: true
+  use ExUnit.Case, async: true
+
+  import Tesla.Mock
 
   alias PackagesBot.{Hexpm, Link, Package}
   alias PackagesBot.Support.Fixtures

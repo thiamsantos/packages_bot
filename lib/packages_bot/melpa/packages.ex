@@ -1,78 +1,74 @@
 defmodule PackagesBot.Melpa.Packages do
+  import PackagesBot.Package
+  alias PackagesBot.Melpa.Archive
   alias PackagesBot.Melpa.Client
-  alias PackagesBot.Melpa.Packages.{Loader, Package}
-  alias PackagesBot.{CurrentTime, Repo}
 
   def renew_packages do
-    Client.archive()
-    |> parse_packages()
-    |> insert_all_packages()
+    with {:ok, packages} <- Client.archive(),
+         {:ok, entries_amount} <- insert_all(packages) do
+      {:ok, entries_amount}
+    end
   end
 
   def renew_download_counts do
-    Client.download_counts()
-    |> parse_download_counts()
-    |> insert_all_download_counts()
+    with {:ok, download_counts} <- Client.download_counts(),
+         {:ok, entries_amount} <- update_download_counts(download_counts) do
+      {:ok, entries_amount}
+    end
   end
 
-  defdelegate search_package(pattern), to: Loader
-
-  defp parse_packages({:error, reason}), do: {:error, reason}
-
-  defp parse_packages({:ok, raw_packages}) do
+  def search_package(pattern) do
     packages =
-      Enum.map(raw_packages, fn {name, meta} ->
-        %{
-          name: name,
-          description: Map.get(meta, "desc"),
-          recipe: "https://github.com/melpa/melpa/blob/master/recipes/#{name}",
-          homepage: get_in(meta, [Access.key("props", %{}), "url"]),
-          inserted_at: CurrentTime.naive_now(),
-          updated_at: CurrentTime.naive_now()
-        }
+      Archive
+      |> :ets.tab2list()
+      |> Enum.filter(fn {name, description, _homepage, _total_downloads} ->
+        content = String.downcase(name <> description)
+
+        String.contains?(content, String.downcase(pattern))
       end)
+      |> Enum.sort_by(
+        fn {_name, _description, _homepage, total_downloads} -> total_downloads end,
+        :desc
+      )
+      |> Enum.take(5)
+      |> Enum.map(&to_telegram/1)
 
     {:ok, packages}
   end
 
-  defp parse_download_counts({:error, reason}), do: {:error, reason}
+  defp to_telegram({name, description, homepage, total_downloads}) do
+    name
+    |> new_package()
+    |> put_id("melpa:#{name}")
+    |> put_description(description)
+    |> put_total_downloads(total_downloads)
+    |> put_link("Recipe", "https://github.com/melpa/melpa/blob/master/recipes/#{name}")
+    |> put_link("Homepage", homepage)
+  end
 
-  defp parse_download_counts({:ok, raw_download_counts}) do
-    download_counts =
-      Enum.map(raw_download_counts, fn {name, total_downloads} ->
-        %{
-          name: name,
-          recipe: "https://github.com/melpa/melpa/blob/master/recipes/#{name}",
-          total_downloads: total_downloads,
-          inserted_at: CurrentTime.naive_now(),
-          updated_at: CurrentTime.naive_now()
-        }
+  defp insert_all(packages) do
+    entries_amount =
+      packages
+      |> Enum.map(fn {name, meta} ->
+        :ets.insert(
+          Archive,
+          {name, Map.get(meta, "desc", ""), get_in(meta, [Access.key("props", %{}), "url"]), 0}
+        )
       end)
+      |> Enum.count()
 
-    {:ok, download_counts}
+    {:ok, entries_amount}
   end
 
-  defp insert_all_packages({:error, reason}), do: {:error, reason}
+  defp update_download_counts(download_counts) do
+    entries_amount =
+      download_counts
+      |> Enum.map(fn {name, total_downloads} ->
+        :ets.update_element(Archive, name, [{4, total_downloads}])
+      end)
+      |> Enum.filter(&Function.identity/1)
+      |> Enum.count()
 
-  defp insert_all_packages({:ok, packages}) do
-    {entries, _result} =
-      Repo.insert_all(Package, packages,
-        conflict_target: :name,
-        on_conflict: {:replace, [:description, :recipe, :homepage, :updated_at]}
-      )
-
-    {:ok, entries}
-  end
-
-  defp insert_all_download_counts({:error, reason}), do: {:error, reason}
-
-  defp insert_all_download_counts({:ok, download_counts}) do
-    {entries, _result} =
-      Repo.insert_all(Package, download_counts,
-        conflict_target: :name,
-        on_conflict: {:replace, [:recipe, :total_downloads, :updated_at]}
-      )
-
-    {:ok, entries}
+    {:ok, entries_amount}
   end
 end

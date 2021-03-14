@@ -3,10 +3,7 @@ import Config
 Code.eval_file("./config/dotenv.exs")
 
 config :packages_bot,
-  ecto_repos: [PackagesBot.Repo],
   env: Mix.env()
-
-config :packages_bot, PackagesBot.CurrentTime, adapter: PackagesBot.CurrentTime.SystemAdapter
 
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

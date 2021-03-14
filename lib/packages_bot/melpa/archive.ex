@@ -12,6 +12,8 @@ defmodule PackagesBot.Melpa.Archive do
   def init(state) do
     Logger.info("Running.")
 
+    :ets.new(__MODULE__, [:set, :protected, :named_table, read_concurrency: true])
+
     {:ok, state, {:continue, :update_archive}}
   end
 

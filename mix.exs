@@ -36,27 +36,19 @@ defmodule PackagesBot.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:ecto_sql, "~> 3.5"},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
-      {:ex_machina, "~> 2.7", only: :test},
       {:excoveralls, "~> 0.14", only: :test},
-      {:faker, "~> 0.16", only: :test},
       {:hackney, "~> 1.17"},
       {:heartcheck, "~> 0.4.3"},
       {:jason, "~> 1.2"},
-      {:mox, "~> 1.0", only: :test},
       {:phoenix, "~> 1.5"},
       {:plug_cowboy, "~> 2.4"},
-      {:postgrex, "~> 0.15"},
       {:sentry, "~> 8.0"},
       {:tesla, "~> 1.4"}
     ]
   end
 
   defp aliases do
-    [
-      "ecto.reset": ["ecto.drop", "ecto.setup"],
-      "ecto.setup": ["ecto.create", "ecto.migrate"]
-    ]
+    []
   end
 end

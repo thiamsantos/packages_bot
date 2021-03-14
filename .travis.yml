@@ -29,9 +29,6 @@ elixir:
 otp_release:
   - '21.0'
 
-before_script:
-  - mix ecto.setup
-
 script:
   - mix format --check-formatted
   - mix credo --strict

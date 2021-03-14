@@ -14,7 +14,6 @@ defmodule PackagesBot.Application do
 
   defp children(:test) do
     [
-      PackagesBot.Repo,
       PackagesBotWeb.Endpoint
     ]
   end
@@ -22,7 +21,6 @@ defmodule PackagesBot.Application do
   defp children(_) do
     [
       {Task.Supervisor, name: PackagesBot.MessageSupervisor},
-      PackagesBot.Repo,
       PackagesBot.Melpa.Archive,
       {PackagesBot.Poller, adapter: PackagesBot.Melpa},
       {PackagesBot.Poller, adapter: PackagesBot.Hexpm},

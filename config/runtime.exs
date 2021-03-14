@@ -1,9 +1,8 @@
 import Config
 
-config :packages_bot, PackagesBot.Repo, url: System.fetch_env!("DATABASE_URL")
-
 config :packages_bot, PackagesBot.Melpa.Archive,
-  renew_interval_in_seconds: String.to_integer(System.fetch_env!("ARCHIVE_RENEW_INTERVAL_IN_SECONDS"))
+  renew_interval_in_seconds:
+    String.to_integer(System.fetch_env!("ARCHIVE_RENEW_INTERVAL_IN_SECONDS"))
 
 config :packages_bot, PackagesBot.Melpa, bot_token: System.fetch_env!("MELPA_BOT_TOKEN")
 config :packages_bot, PackagesBot.Hexpm, bot_token: System.fetch_env!("HEXPM_BOT_TOKEN")
