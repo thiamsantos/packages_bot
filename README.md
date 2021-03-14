@@ -19,4 +19,8 @@ See the [contributing file](CONTRIBUTING.md).
 
 ## License
 
-[Apache License, Version 2.0](LICENSE) © [Thiago Santos](https://github.com/thiamsantos)
+Copyright 2019 [Thiago Santos](https://github.com/thiamsantos).
+
+Telegram Package Bots source code is released under Apache 2 License.
+
+Check [LICENSE](LICENSE) file for more information.
