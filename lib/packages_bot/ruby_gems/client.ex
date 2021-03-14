@@ -3,7 +3,7 @@ defmodule PackagesBot.RubyGems.Client do
 
   plug Tesla.Middleware.BaseUrl, "https://rubygems.org"
   plug Tesla.Middleware.Headers, [{"user-agent", "RubyGems telegram bot"}]
-  plug PackagesBot.TeslaLogger, marker: __MODULE__
+  plug PackagesBot.TeslaLogger, marker: inspect(__MODULE__)
   plug Tesla.Middleware.DecodeJson
 
   def search(pattern) do

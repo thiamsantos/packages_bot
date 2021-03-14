@@ -3,7 +3,7 @@ defmodule PackagesBot.Melpa.Client do
 
   plug Tesla.Middleware.BaseUrl, "https://melpa.org"
   plug Tesla.Middleware.Headers, [{"user-agent", "Melpa telegram bot"}]
-  plug PackagesBot.TeslaLogger, marker: __MODULE__
+  plug PackagesBot.TeslaLogger, marker: inspect(__MODULE__)
   plug Tesla.Middleware.JSON
 
   def archive do

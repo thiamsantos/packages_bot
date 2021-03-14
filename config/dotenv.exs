@@ -1,4 +1,4 @@
-unless Code.ensure_compiled?(Dotenv) do
+unless Code.ensure_loaded?(Dotenv) do
   defmodule Dotenv do
     @key_value_delimeter "="
 
@@ -8,39 +8,19 @@ unless Code.ensure_compiled?(Dotenv) do
         |> filenames()
         |> Enum.map(&absolute_path/1)
         |> Enum.filter(&File.exists?/1)
-        |> Enum.each(&load_file/1)
+        |> Enum.flat_map(&get_pairs/1)
+        |> load_env()
       end
-    end
-
-    def fetch_env!(key) do
-      case System.get_env(key) do
-        nil ->
-          raise ArgumentError,
-                "Could not fetch environment #{key} because configuration #{key} was not set"
-
-        value ->
-          value
-      end
-    end
-
-    def fetch_integer_env!(key) do
-      key
-      |> fetch_env!()
-      |> String.to_integer()
     end
 
     defp filenames(current_env) do
-      [".env", ".env.local", ".env.#{current_env}"]
+      [".env", ".env.local", ".env.#{current_env}", ".env.local.#{current_env}"]
     end
 
     defp current_env do
       Mix.env()
       |> to_string()
       |> String.downcase()
-    end
-
-    defp ci_environment? do
-      System.get_env("CI") != nil
     end
 
     defp absolute_path(filename) do
@@ -51,19 +31,17 @@ unless Code.ensure_compiled?(Dotenv) do
       |> Path.expand()
     end
 
-    defp load_file(content) do
-      content
+    defp get_pairs(filename) do
+      filename
       |> File.read!()
-      |> get_pairs()
-      |> load_env()
-    end
-
-    defp get_pairs(content) do
-      content
       |> String.split("\n")
       |> Enum.reject(&blank_entry?/1)
       |> Enum.reject(&comment_entry?/1)
       |> Enum.map(&parse_line/1)
+    end
+
+    defp ci_environment? do
+      System.get_env("CI") != nil
     end
 
     defp parse_line(line) do
@@ -72,7 +50,7 @@ unless Code.ensure_compiled?(Dotenv) do
         |> String.trim()
         |> String.split(@key_value_delimeter, parts: 2)
 
-      [key, parse_value(value)]
+      {key, parse_value(value)}
     end
 
     defp parse_value(value) do
@@ -92,7 +70,9 @@ unless Code.ensure_compiled?(Dotenv) do
     end
 
     defp load_env(pairs) when is_list(pairs) do
-      Enum.each(pairs, fn [key, value] ->
+      pairs
+      |> Enum.filter(fn {key, _value} -> is_nil(System.get_env(key)) end)
+      |> Enum.each(fn {key, value} ->
         System.put_env(String.upcase(key), value)
       end)
     end
@@ -105,6 +85,6 @@ unless Code.ensure_compiled?(Dotenv) do
       String.match?(string, ~r(^\s*#))
     end
   end
-
-  Dotenv.auto_load()
 end
+
+Dotenv.auto_load()

@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 config :packages_bot, PackagesBot.Repo, pool: Ecto.Adapters.SQL.Sandbox
 

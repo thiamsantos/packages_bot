@@ -19,7 +19,7 @@ defmodule PackagesBot.TelegramClient do
     middleware = [
       {Tesla.Middleware.BaseUrl, base_url},
       {PackagesBot.TeslaLogger,
-       filter_url: {~r(bot.*:.*\/), "bot<FILTERED>/"}, marker: __MODULE__},
+       filter_url: {~r(bot.*:.*\/), "bot<FILTERED>/"}, marker: inspect(__MODULE__)},
       Tesla.Middleware.JSON
     ]
 

@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 config :packages_bot, PackagesBotWeb.Endpoint,
   http: [port: 4000],

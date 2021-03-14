@@ -24,7 +24,7 @@ defmodule PackagesBot.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger],
+      extra_applications: [:logger, :runtime_tools],
       mod: {PackagesBot.Application, []}
     ]
   end
@@ -36,21 +36,20 @@ defmodule PackagesBot.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:ecto_sql, "~> 3.1"},
-      {:postgrex, "~> 0.14.2"},
-      {:jason, "~> 1.1"},
-      {:tesla, "~> 1.2"},
-      {:timber, "~> 3.1", only: :prod},
-      {:credo, "~> 1.0", only: [:dev, :test], runtime: false},
-      {:distillery, "~> 2.0", runtime: false},
-      {:excoveralls, "~> 0.10", only: :test},
-      {:mox, "~> 0.5.0", only: :test},
-      {:ex_machina, "~> 2.3", only: :test},
-      {:faker, "~> 0.12.0", only: :test},
-      {:sentry, "~> 7.1"},
-      {:plug_cowboy, "~> 2.1"},
-      {:phoenix, "~> 1.4"},
-      {:heartcheck, "~> 0.4.1"}
+      {:ecto_sql, "~> 3.5"},
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
+      {:ex_machina, "~> 2.7", only: :test},
+      {:excoveralls, "~> 0.14", only: :test},
+      {:faker, "~> 0.16", only: :test},
+      {:hackney, "~> 1.17"},
+      {:heartcheck, "~> 0.4.3"},
+      {:jason, "~> 1.2"},
+      {:mox, "~> 1.0", only: :test},
+      {:phoenix, "~> 1.5"},
+      {:plug_cowboy, "~> 2.4"},
+      {:postgrex, "~> 0.15"},
+      {:sentry, "~> 8.0"},
+      {:tesla, "~> 1.4"}
     ]
   end
 

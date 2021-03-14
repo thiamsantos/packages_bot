@@ -3,7 +3,7 @@ defmodule PackagesBot.Hexpm.Client do
 
   plug Tesla.Middleware.BaseUrl, "https://hex.pm/api"
   plug Tesla.Middleware.Headers, [{"user-agent", "Hexpm telegram bot"}]
-  plug PackagesBot.TeslaLogger, marker: __MODULE__
+  plug PackagesBot.TeslaLogger, marker: inspect(__MODULE__)
   plug Tesla.Middleware.DecodeJson, decode_content_types: ["application/vnd.hex+json"]
 
   def search(pattern) do
