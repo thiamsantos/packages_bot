@@ -37,6 +37,7 @@ defmodule PackagesBot.MixProject do
   defp deps do
     [
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
+      {:credo_naming, "~> 1.0", only: [:dev, :test], runtime: false},
       {:excoveralls, "~> 0.14", only: :test},
       {:hackney, "~> 1.17"},
       {:heartcheck, "~> 0.4.3"},
