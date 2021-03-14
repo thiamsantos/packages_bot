@@ -1,7 +1,7 @@
 # Telegram Package Bots
 
-[![CI](https://github.com/thiamsantos/packages_bot/workflows/CI/badge.svg?branch=master)](https://github.com/thiamsantos/packages_bot/actions?query=branch%3Amaster)
-[![Coverage Status](https://coveralls.io/repos/github/thiamsantos/packages_bot/badge.svg?branch=master)](https://coveralls.io/github/thiamsantos/packages_bot?branch=master)
+[![CI](https://github.com/thiamsantos/packages_bot/workflows/CI/badge.svg?branch=main)](https://github.com/thiamsantos/packages_bot/actions?query=branch%3Amain)
+[![Coverage Status](https://coveralls.io/repos/github/thiamsantos/packages_bot/badge.svg?branch=main)](https://coveralls.io/github/thiamsantos/packages_bot?branch=main)
 
 There are two Telegram bots on this project.
 
