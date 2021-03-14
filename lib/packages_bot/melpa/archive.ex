@@ -10,7 +10,7 @@ defmodule PackagesBot.Melpa.Archive do
   end
 
   def init(state) do
-    Logger.info("Running.")
+    Logger.info("[#{inspect(__MODULE__)}] Running.")
 
     :ets.new(__MODULE__, [:set, :protected, :named_table, read_concurrency: true])
 
@@ -30,13 +30,13 @@ defmodule PackagesBot.Melpa.Archive do
   end
 
   defp update_archive do
-    Logger.info("Updating archive.")
+    Logger.info("[#{inspect(__MODULE__)}] Updating archive.")
 
     {:ok, packages_renewed} = Packages.renew_packages()
-    Logger.info("Updated #{packages_renewed} packages.")
+    Logger.info("[#{inspect(__MODULE__)}] Updated #{packages_renewed} packages.")
 
     {:ok, packages_downloads_renewed} = Packages.renew_download_counts()
-    Logger.info("Updated #{packages_downloads_renewed} download counts.")
+    Logger.info("[#{inspect(__MODULE__)}] Updated #{packages_downloads_renewed} download counts.")
 
     schedule_update()
   end
