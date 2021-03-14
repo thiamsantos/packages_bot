@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  mix_test:
+    name: mix test
+    runs-on: ubuntu-latest
+    env:
+      MIX_ENV: test
+      GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      ARCHIVE_RENEW_INTERVAL_IN_SECONDS: 3600
+      MELPA_BOT_TOKEN: 'fake_token'
+      HEXPM_BOT_TOKEN: 'fake_token'
+      RUBY_GEMS_BOT_TOKEN: 'fake_token'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: erlef/setup-elixir@v1
+        with:
+          otp-version: 23.1.1
+          elixir-version: 1.11.2
+      - name: Install Dependencies
+        run: |
+          mix local.hex --force
+          mix local.rebar --force
+          mix deps.get
+      - run: mix compile --warnings-as-errors
+      - run: mix deps.unlock --check-unused
+      - run: mix format --check-formatted
+      - run: mix test
+      - run: mix credo
+      - run: mix coveralls.github
