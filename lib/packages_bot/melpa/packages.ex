@@ -4,16 +4,16 @@ defmodule PackagesBot.Melpa.Packages do
   alias PackagesBot.Melpa.Client
 
   def renew_packages do
-    with {:ok, packages} <- Client.archive(),
-         {:ok, entries_amount} <- insert_all(packages) do
-      {:ok, entries_amount}
+    case Client.archive() do
+      {:ok, packages} -> insert_all(packages)
+      {:error, reason} -> {:error, reason}
     end
   end
 
   def renew_download_counts do
-    with {:ok, download_counts} <- Client.download_counts(),
-         {:ok, entries_amount} <- update_download_counts(download_counts) do
-      {:ok, entries_amount}
+    case Client.download_counts() do
+      {:ok, download_counts} -> update_download_counts(download_counts)
+      {:error, reason} -> {:error, reason}
     end
   end
 
