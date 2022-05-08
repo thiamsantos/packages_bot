@@ -8,14 +8,14 @@ defmodule PackagesBot.Melpa.Client do
 
   def archive do
     case get("archive.json") do
-      {:ok, %{body: body, status: 200}} -> {:ok, body}
+      {:ok, %{body: body, status: 200}} when is_map(body) -> {:ok, body}
       _ -> {:error, "Failed to fetch archive!"}
     end
   end
 
   def download_counts do
     case get("download_counts.json") do
-      {:ok, %{body: body, status: 200}} -> {:ok, body}
+      {:ok, %{body: body, status: 200}} when is_map(body) -> {:ok, body}
       _ -> {:error, "Failed to fetch download counts!"}
     end
   end
