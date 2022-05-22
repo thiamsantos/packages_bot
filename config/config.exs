@@ -1,7 +1,5 @@
 import Config
 
-Code.eval_file("./config/dotenv.exs")
-
 config :packages_bot,
   env: Mix.env()
 
