@@ -25,9 +25,7 @@ defmodule PackagesBot.Messager do
 
   defp handle_search({:error, reason}, %{adapter: adapter, pattern: pattern}) do
     Logger.error(
-      "[#{inspect(__MODULE__)}] Failed to answer #{inspect(pattern)} for #{adapter} with #{
-        inspect(reason)
-      }!"
+      "[#{inspect(__MODULE__)}] Failed to answer #{inspect(pattern)} for #{adapter} with #{inspect(reason)}!"
     )
   end
 
@@ -39,9 +37,7 @@ defmodule PackagesBot.Messager do
       description: package.description,
       input_message_content: %{
         message_text:
-          "<strong>Package</strong>: #{package.name}\n<strong>Description</strong>: #{
-            package.description
-          }\n\n<strong>Total downloads</strong>: #{package.total_downloads}",
+          "<strong>Package</strong>: #{package.name}\n<strong>Description</strong>: #{package.description}\n\n<strong>Total downloads</strong>: #{package.total_downloads}",
         parse_mode: "HTML"
       },
       reply_markup: %{

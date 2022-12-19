@@ -7,9 +7,7 @@ defmodule PackagesBot.TeslaLogger do
     {time, response} = :timer.tc(Tesla, :run, [env, next])
 
     Logger.info(
-      "[#{format_marker(opts)}] #{format_method(env)} #{format_url(env, opts)} -> #{
-        format_status(response)
-      } (#{format_time(time)})"
+      "[#{format_marker(opts)}] #{format_method(env)} #{format_url(env, opts)} -> #{format_status(response)} (#{format_time(time)})"
     )
 
     response
