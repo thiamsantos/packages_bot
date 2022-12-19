@@ -45,7 +45,7 @@ defmodule PackagesBot.MixProject do
       {:phoenix, "~> 1.5"},
       {:plug_cowboy, "~> 2.4"},
       {:sentry, "~> 8.0"},
-      {:tesla, "~> 1.4"}
+      {:tesla, "~> 1.5"}
     ]
   end
 
