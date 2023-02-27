@@ -41,7 +41,8 @@ defmodule PackagesBot.MixProject do
       {:hackney, "~> 1.17"},
       {:heartcheck, "~> 0.4.3"},
       {:jason, "~> 1.2"},
-      {:phoenix, "~> 1.5"},
+      {:phoenix, "~> 1.7"},
+      {:phoenix_view, "~> 2.0"},
       {:plug_cowboy, "~> 2.4"},
       {:sentry, "~> 8.0"},
       {:tesla, "~> 1.5"}
